@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "io.hvk.meradostapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "io.hvk.meradostapp"
