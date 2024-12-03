@@ -9,5 +9,7 @@ data class QuizProgress(
     val categoryId: String,
     val completedQuizzes: Int,
     val totalQuizzes: Int,
-    val lastUpdated: Long = System.currentTimeMillis()
+    val lastAttemptDate: Long = System.currentTimeMillis(),
+    val highestScore: Int = 0,
+    val totalAttempts: Int = 0
 ) 

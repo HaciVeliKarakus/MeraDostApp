@@ -3,27 +3,38 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Background Circle -->
+    
+    <!-- Background Circle with gradient -->
     <path
         android:fillColor="#6750A4"
-        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"/>
+        android:pathData="M54,28C40.19,28 29,39.19 29,53C29,66.81 40.19,78 54,78C67.81,78 79,66.81 79,53C79,39.19 67.81,28 54,28Z"/>
 
-    <!-- Book Pages -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M34,34h40v40h-40z"/>
+    <!-- Decorative elements -->
     <path
         android:fillColor="#EADDFF"
-        android:pathData="M37,37h34v34h-34z"/>
+        android:pathData="M54,32C42.95,32 34,40.95 34,52C34,63.05 42.95,72 54,72C65.05,72 74,63.05 74,52C74,40.95 65.05,32 54,32ZM54,68C45.16,68 38,60.84 38,52C38,43.16 45.16,36 54,36C62.84,36 70,43.16 70,52C70,60.84 62.84,68 54,68Z"/>
 
-    <!-- Hindi Text "म" -->
+    <!-- Hindi Letter "अ" -->
     <path
         android:fillColor="#21005E"
-        android:pathData="M44,44h20v20h-20z"/>
+        android:pathData="M48,44L60,44A2,2 0,0 1,62 46L62,58A2,2 0,0 1,60 60L48,60A2,2 0,0 1,46 58L46,46A2,2 0,0 1,48 44z"/>
+    
+    <!-- Decorative dot -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M48,48L60,48A2,2 0,0 1,62 50L62,58A2,2 0,0 1,60 60L48,60A2,2 0,0 1,46 58L46,50A2,2 0,0 1,48 48z"/>
+        android:fillColor="#EADDFF"
+        android:pathData="M54,52m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+
+    <!-- Outer ring -->
     <path
-        android:fillColor="#21005E"
-        android:pathData="M50,52L58,52A1,1 0,0 1,59 53L59,55A1,1 0,0 1,58 56L50,56A1,1 0,0 1,49 55L49,53A1,1 0,0 1,50 52z"/>
+        android:strokeColor="#EADDFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M54,28C40.19,28 29,39.19 29,53C29,66.81 40.19,78 54,78C67.81,78 79,66.81 79,53C79,39.19 67.81,28 54,28Z"/>
+
+    <!-- Decorative lines -->
+    <path
+        android:strokeColor="#EADDFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M54,32L54,36M54,68L54,72M32,52L36,52M72,52L76,52"/>
 </vector>

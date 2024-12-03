@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Modern color palette with better dark mode support
+// Light Theme Colors
 private val md_theme_light_primary = Color(0xFF6750A4)
 private val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 private val md_theme_light_primaryContainer = Color(0xFFEADDFF)
@@ -20,14 +20,17 @@ private val md_theme_light_secondary = Color(0xFF625B71)
 private val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 private val md_theme_light_secondaryContainer = Color(0xFFE8DEF8)
 private val md_theme_light_onSecondaryContainer = Color(0xFF1E192B)
-private val md_theme_light_background = Color(0xFFF6F0FF)
+private val md_theme_light_background = Color(0xFFFFFBFE)
 private val md_theme_light_onBackground = Color(0xFF1C1B1F)
 private val md_theme_light_surface = Color(0xFFFFFBFE)
 private val md_theme_light_onSurface = Color(0xFF1C1B1F)
 private val md_theme_light_surfaceVariant = Color(0xFFE7E0EC)
 private val md_theme_light_onSurfaceVariant = Color(0xFF49454F)
 private val md_theme_light_outline = Color(0xFF79747E)
+private val md_theme_light_error = Color(0xFFB3261E)
+private val md_theme_light_onError = Color(0xFFFFFFFF)
 
+// Dark Theme Colors
 private val md_theme_dark_primary = Color(0xFFD0BCFF)
 private val md_theme_dark_onPrimary = Color(0xFF381E72)
 private val md_theme_dark_primaryContainer = Color(0xFF4F378B)
@@ -43,6 +46,8 @@ private val md_theme_dark_onSurface = Color(0xFFE6E1E5)
 private val md_theme_dark_surfaceVariant = Color(0xFF49454F)
 private val md_theme_dark_onSurfaceVariant = Color(0xFFCAC4D0)
 private val md_theme_dark_outline = Color(0xFF938F99)
+private val md_theme_dark_error = Color(0xFFF2B8B5)
+private val md_theme_dark_onError = Color(0xFF601410)
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -59,7 +64,9 @@ private val LightColorScheme = lightColorScheme(
     onSurface = md_theme_light_onSurface,
     surfaceVariant = md_theme_light_surfaceVariant,
     onSurfaceVariant = md_theme_light_onSurfaceVariant,
-    outline = md_theme_light_outline
+    outline = md_theme_light_outline,
+    error = md_theme_light_error,
+    onError = md_theme_light_onError
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -77,7 +84,9 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = md_theme_dark_onSurface,
     surfaceVariant = md_theme_dark_surfaceVariant,
     onSurfaceVariant = md_theme_dark_onSurfaceVariant,
-    outline = md_theme_dark_outline
+    outline = md_theme_dark_outline,
+    error = md_theme_dark_error,
+    onError = md_theme_dark_onError
 )
 
 @Composable
@@ -91,20 +100,21 @@ fun MeraDostAppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            // Set status bar color based on theme
+            // Set status bar color and appearance
             window.statusBarColor = if (darkTheme) {
                 md_theme_dark_background.toArgb()
             } else {
                 md_theme_light_background.toArgb()
             }
-            // Set status bar icons color
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
-            // Set navigation bar color
+            
+            // Set navigation bar color and appearance
             window.navigationBarColor = if (darkTheme) {
                 md_theme_dark_background.toArgb()
             } else {
                 md_theme_light_background.toArgb()
             }
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
         }
     }
 

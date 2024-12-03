@@ -586,7 +586,7 @@ val lectureCategories = listOf(
                 hindi = "गहरा नीला",
                 english = "Dark Blue",
                 pronunciation = "gehra neela",
-                example = "गहरा नीला समुद्र (gehra neela samundar) - deep blue ocean"
+                example = "गहरा नीला समुदर (gehra neela samundar) - deep blue ocean"
             ),
             LectureContent(
                 hindi = "हल्का नीला",
@@ -687,7 +687,7 @@ val lectureCategories = listOf(
                 example = "मेरी ताई (meri tai) - my elder paternal aunt"
             ),
             LectureContent(
-                hindi = "मा��ा",
+                hindi = "माा",
                 english = "Maternal Uncle",
                 pronunciation = "maama",
                 example = "मेरे मामा (mere maama) - my maternal uncle"
@@ -1027,10 +1027,18 @@ val lectureCategories = listOf(
                 example = "क्या समय हुआ है? (kya samay hua hai?) - What time is it?"
             ),
             LectureContent(
+                hindi = "घड़ी",
+                english = "Clock/Watch",
+                pronunciation = "ghadee",
+                example = "मेरी घड़ी में पांच बजे हैं (meri ghadee mein paanch baje hain) - My watch shows five o'clock"
+            ),
+
+            // Parts of Day
+            LectureContent(
                 hindi = "सुबह",
                 english = "Morning",
                 pronunciation = "subah",
-                example = "सुबह का समय (subah ka samay) - Morning time"
+                example = "शुभ प्रभात! सुबह हो गई (shubh prabhat! subah ho gayi) - Good morning! It's morning"
             ),
             LectureContent(
                 hindi = "दोपहर",
@@ -1042,13 +1050,103 @@ val lectureCategories = listOf(
                 hindi = "शाम",
                 english = "Evening",
                 pronunciation = "shaam",
-                example = "शाम की चाय (shaam ki chai) - Evening tea"
+                example = "शाम को चाय पीते हैं (shaam ko chai peete hain) - We drink tea in the evening"
             ),
             LectureContent(
                 hindi = "रात",
                 english = "Night",
                 pronunciation = "raat",
-                example = "रात का खाना (raat ka khana) - Dinner"
+                example = "शुभ रात्रि (shubh ratri) - Good night"
+            ),
+
+            // Time Units
+            LectureContent(
+                hindi = "सेकंड",
+                english = "Second",
+                pronunciation = "second",
+                example = "एक मिनट में साठ सेकंड होते हैं (ek minute mein saath second hote hain) - There are sixty seconds in a minute"
+            ),
+            LectureContent(
+                hindi = "मिनट",
+                english = "Minute",
+                pronunciation = "minute",
+                example = "पांच मिनट रुको (paanch minute ruko) - Wait for five minutes"
+            ),
+            LectureContent(
+                hindi = "घंटा",
+                english = "Hour",
+                pronunciation = "ghanta",
+                example = "एक घंटे का समय (ek ghante ka samay) - Time of one hour"
+            ),
+
+            // Time Periods
+            LectureContent(
+                hindi = "दिन",
+                english = "Day",
+                pronunciation = "din",
+                example = "आज का दिन (aaj ka din) - Today"
+            ),
+            LectureContent(
+                hindi = "हफ्ता",
+                english = "Week",
+                pronunciation = "hafta",
+                example = "अगले हफ्ते मिलते हैं (agle hafte milte hain) - See you next week"
+            ),
+            LectureContent(
+                hindi = "महीना",
+                english = "Month",
+                pronunciation = "maheena",
+                example = "इस महीने की शुरुआत (is mahine ki shuruaat) - Beginning of this month"
+            ),
+            LectureContent(
+                hindi = "साल",
+                english = "Year",
+                pronunciation = "saal",
+                example = "नया साल मुबारक (naya saal mubarak) - Happy New Year"
+            ),
+
+            // Common Time Phrases
+            LectureContent(
+                hindi = "आज",
+                english = "Today",
+                pronunciation = "aaj",
+                example = "आज क्या दिन है? (aaj kya din hai?) - What day is today?"
+            ),
+            LectureContent(
+                hindi = "कल",
+                english = "Tomorrow/Yesterday",
+                pronunciation = "kal",
+                example = "कल मिलते हैं (kal milte hain) - See you tomorrow"
+            ),
+            LectureContent(
+                hindi = "परसों",
+                english = "Day after tomorrow/Day before yesterday",
+                pronunciation = "parson",
+                example = "परसों छुट्टी है (parson chhutti hai) - Day after tomorrow is holiday"
+            ),
+            LectureContent(
+                hindi = "अभी",
+                english = "Now",
+                pronunciation = "abhi",
+                example = "अभी समय नहीं है (abhi samay nahi hai) - No time now"
+            ),
+            LectureContent(
+                hindi = "बाद में",
+                english = "Later",
+                pronunciation = "baad mein",
+                example = "बाद में मिलते हैं (baad mein milte hain) - See you later"
+            ),
+            LectureContent(
+                hindi = "जल्दी",
+                english = "Early",
+                pronunciation = "jaldi",
+                example = "जल्दी उठो (jaldi utho) - Wake up early"
+            ),
+            LectureContent(
+                hindi = "देर",
+                english = "Late",
+                pronunciation = "der",
+                example = "देर हो गई (der ho gayi) - It's late"
             )
         )
     ),
@@ -1096,11 +1194,12 @@ val lectureCategories = listOf(
         description = "Express feelings in Hindi",
         icon = Icons.Default.EmojiEmotions,
         content = listOf(
+            // Basic Emotions
             LectureContent(
                 hindi = "खुश",
                 english = "Happy",
                 pronunciation = "khush",
-                example = "मैं खुश हूं (main khush hoon) - I am happy"
+                example = "मैं खहुत खुश हूं (main bahut khush hoon) - I am very happy"
             ),
             LectureContent(
                 hindi = "दुखी",
@@ -1115,16 +1214,122 @@ val lectureCategories = listOf(
                 example = "मुझे गुस्सा आ रहा है (mujhe gussa aa raha hai) - I am getting angry"
             ),
             LectureContent(
-                hindi = "थका",
-                english = "Tired",
-                pronunciation = "thaka",
-                example = "मैं थका हुआ हूं (main thaka hua hoon) - I am tired"
+                hindi = "प्यार",
+                english = "Love",
+                pronunciation = "pyaar",
+                example = "मैं तुमसे प्यार करता/करती हूं (main tumse pyaar karta/karti hoon) - I love you"
             ),
+            LectureContent(
+                hindi = "डर",
+                english = "Fear",
+                pronunciation = "dar",
+                example = "मुझे डर लग रहा है (mujhe dar lag raha hai) - I am feeling scared"
+            ),
+
+            // Complex Emotions
             LectureContent(
                 hindi = "उत्साहित",
                 english = "Excited",
                 pronunciation = "utsahit",
-                example = "बच्चे उत्साहित हैं (bachche utsahit hain) - Children are excited"
+                example = "मैं बहुत उत्साहित हूं (main bahut utsahit hoon) - I am very excited"
+            ),
+            LectureContent(
+                hindi = "चिंतित",
+                english = "Worried",
+                pronunciation = "chintit",
+                example = "वह चिंतित दिख रहा है (woh chintit dikh raha hai) - He looks worried"
+            ),
+            LectureContent(
+                hindi = "शर्मिंदा",
+                english = "Embarrassed",
+                pronunciation = "sharminda",
+                example = "मैं शर्मिंदा हूं (main sharminda hoon) - I am embarrassed"
+            ),
+            LectureContent(
+                hindi = "आश्चर्यचकित",
+                english = "Surprised",
+                pronunciation = "aashcharyachakit",
+                example = "मैं आश्चर्यचकित हूं (main aashcharyachakit hoon) - I am surprised"
+            ),
+
+            // Mood States
+            LectureContent(
+                hindi = "थका हुआ",
+                english = "Tired",
+                pronunciation = "thaka hua",
+                example = "मैं बहुत थका हुआ हूं (main bahut thaka hua hoon) - I am very tired"
+            ),
+            LectureContent(
+                hindi = "ऊबा हुआ",
+                english = "Bored",
+                pronunciation = "ooba hua",
+                example = "मैं ऊब गया हूं (main oob gaya hoon) - I am bored"
+            ),
+            LectureContent(
+                hindi = "शांत",
+                english = "Calm",
+                pronunciation = "shaant",
+                example = "कृपया शांत रहिए (kripya shaant rahiye) - Please stay calm"
+            ),
+            LectureContent(
+                hindi = "परेशान",
+                english = "Troubled",
+                pronunciation = "pareshan",
+                example = "मैं परेशान हूं (main pareshan hoon) - I am troubled"
+            ),
+
+            // Positive States
+            LectureContent(
+                hindi = "संतुष्ट",
+                english = "Satisfied",
+                pronunciation = "santusht",
+                example = "मैं संतुष्ट हूं (main santusht hoon) - I am satisfied"
+            ),
+            LectureContent(
+                hindi = "आनंदित",
+                english = "Delighted",
+                pronunciation = "aanandit",
+                example = "मैं आनंदित हूं (main aanandit hoon) - I am delighted"
+            ),
+            LectureContent(
+                hindi = "गर्वित",
+                english = "Proud",
+                pronunciation = "garvit",
+                example = "मैं तुम पर गर्वित हूं (main tum par garvit hoon) - I am proud of you"
+            ),
+
+            // Negative States
+            LectureContent(
+                hindi = "निराश",
+                english = "Disappointed",
+                pronunciation = "nirash",
+                example = "मैं निराश हूं (main nirash hoon) - I am disappointed"
+            ),
+            LectureContent(
+                hindi = "ईर्ष्यालु",
+                english = "Jealous",
+                pronunciation = "eershyalu",
+                example = "वह ईर्ष्यालु है (woh eershyalu hai) - He/She is jealous"
+            ),
+            LectureContent(
+                hindi = "दुखी",
+                english = "Hurt",
+                pronunciation = "dukhi",
+                example = "मैं दुखी हूं (main dukhi hoon) - I am hurt"
+            ),
+
+            // Social Emotions
+            LectureContent(
+                hindi = "शर्मीला",
+                english = "Shy",
+                pronunciation = "sharmeela",
+                example = "वह बहुत शर्मीली है (woh bahut sharmeeli hai) - She is very shy"
+            ),
+            LectureContent(
+                hindi = "आत्मविश्वासी",
+                english = "Confident",
+                pronunciation = "aatmavishwasi",
+                example = "मैं आत्मविश्वासी हूं (main aatmavishwasi hoon) - I am confident"
             )
         )
     ),

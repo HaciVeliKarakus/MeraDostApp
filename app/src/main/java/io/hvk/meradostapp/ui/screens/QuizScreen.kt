@@ -1,16 +1,22 @@
 package io.hvk.meradostapp.ui.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.hvk.meradostapp.data.db.QuizProgress
 import io.hvk.meradostapp.model.QuizCategory
@@ -25,26 +31,57 @@ fun QuizScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.background)
     ) {
-        Text(
-            text = "Quiz Categories",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        
+        // Header
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(160.dp)
+                .background(MaterialTheme.colorScheme.primary)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Quiz",
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+                Text(
+                    text = "Test your Hindi knowledge",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
+                )
+            }
+        }
+
+        // Quiz Categories
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(quizCategories) { category ->
                 val progress by quizViewModel.getProgressForCategory(category.id)
-                    .collectAsState(initial = null)
+                    .collectAsState(initial = QuizProgress(
+                        categoryId = category.id,
+                        completedQuizzes = 0,
+                        totalQuizzes = 0
+                    ))
                 
                 QuizCategoryCard(
                     category = category,
-                    progress = progress,
+                    progress = if (progress.totalQuizzes > 0) {
+                        progress.completedQuizzes.toFloat() / progress.totalQuizzes
+                    } else {
+                        0f
+                    },
+                    quizViewModel = quizViewModel,
                     onClick = { onCategoryClick(category.id) }
                 )
             }
@@ -52,59 +89,98 @@ fun QuizScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizCategoryCard(
     category: QuizCategory,
-    progress: QuizProgress?,
+    progress: Float,
+    quizViewModel: QuizViewModel,
     onClick: () -> Unit
 ) {
+    val highScore by quizViewModel.getHighScore(category.id)
+        .collectAsState(initial = 0)
+    val attempts by quizViewModel.getTotalAttempts(category.id)
+        .collectAsState(initial = 0)
+
     ElevatedCard(
-        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1f)
+            .aspectRatio(0.8f)
+            .clickable(onClick = onClick)
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(16.dp)
+            ),
+        shape = RoundedCornerShape(16.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Icon(
-                imageVector = category.icon,
-                contentDescription = null,
-                modifier = Modifier.size(48.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
-            
-            Spacer(modifier = Modifier.height(8.dp))
-            
+            // Icon with circular progress
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .padding(8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(
+                    progress = { progress },
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.primary,
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                )
+                Icon(
+                    imageVector = category.icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(40.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             Text(
                 text = category.title,
                 style = MaterialTheme.typography.titleMedium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                textAlign = TextAlign.Center
             )
-            
+
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
-                text = category.description,
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                text = "${(progress * 100).toInt()}% Complete",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
             )
-            
-            if (progress != null) {
-                Spacer(modifier = Modifier.height(8.dp))
-                LinearProgressIndicator(
-                    progress = progress.completedQuizzes.toFloat() / progress.totalQuizzes,
-                    modifier = Modifier.fillMaxWidth()
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            LinearProgressIndicator(
+                progress = { progress },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .clip(RoundedCornerShape(2.dp)),
+                color = MaterialTheme.colorScheme.primary,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Best: $highScore",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
-                    text = "${progress.completedQuizzes}/${progress.totalQuizzes} completed",
-                    style = MaterialTheme.typography.bodySmall
+                    text = "Attempts: $attempts",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
