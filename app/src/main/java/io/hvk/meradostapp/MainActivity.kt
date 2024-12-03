@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import io.hvk.meradostapp.data.PreferencesManager
 import io.hvk.meradostapp.navigation.BottomNavItem
 import io.hvk.meradostapp.navigation.Screen
@@ -80,7 +82,23 @@ fun MainScreen() {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable(Screen.Home.route) { HomeScreen() }
-                composable(Screen.Quiz.route) { QuizScreen() }
+                composable(Screen.Quiz.route) { 
+                    QuizScreen(
+                        onCategoryClick = { categoryId ->
+                            navController.navigate(Screen.QuizCategory.createRoute(categoryId))
+                        }
+                    )
+                }
+                composable(
+                    route = Screen.QuizCategory.route,
+                    arguments = listOf(navArgument("categoryId") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val categoryId = backStackEntry.arguments?.getString("categoryId")
+                    QuizCategoryScreen(
+                        categoryId = categoryId,
+                        onBackClick = { navController.navigateUp() }
+                    )
+                }
                 composable(Screen.Settings.route) { SettingsScreen() }
             }
         }
