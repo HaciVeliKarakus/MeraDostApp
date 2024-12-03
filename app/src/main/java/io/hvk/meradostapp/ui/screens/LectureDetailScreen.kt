@@ -4,21 +4,26 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Boy
 import androidx.compose.material.icons.filled.Elderly
 import androidx.compose.material.icons.filled.ElderlyWoman
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Face4
 import androidx.compose.material.icons.filled.Girl
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Man
 import androidx.compose.material.icons.filled.Man4
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Person4
+import androidx.compose.material.icons.filled.RecordVoiceOver
+import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material.icons.filled.Woman
 import androidx.compose.material.icons.filled.Woman2
 import androidx.compose.material3.*
@@ -32,13 +37,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.hvk.meradostapp.model.LectureContent
 import io.hvk.meradostapp.model.lectureCategories
+import io.hvk.meradostapp.ui.components.AnimatedBackground
 
 @Composable
 fun LectureDetailScreen(
@@ -51,21 +60,50 @@ fun LectureDetailScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .background(MaterialTheme.colorScheme.background)
         ) {
-            Text(
-                text = lecture?.title ?: "Lecture",
-                style = MaterialTheme.typography.headlineMedium
-            )
-            
-            Spacer(modifier = Modifier.height(16.dp))
-            
+            // Header
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .background(MaterialTheme.colorScheme.primary)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = lecture?.icon ?: Icons.Default.Book,
+                        contentDescription = null,
+                        modifier = Modifier.size(48.dp),
+                        tint = MaterialTheme.colorScheme.onPrimary
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = lecture?.title ?: "Lecture",
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                    Text(
+                        text = lecture?.description ?: "",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
+                    )
+                }
+            }
+
+            // Content
             LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(
                     items = lecture?.content ?: emptyList(),
-                    key = { it.hindi + it.english } // Use hindi text as stable key
+                    key = { it.hindi + it.english }
                 ) { content ->
                     AnimatedCard(content = content)
                 }
@@ -74,7 +112,6 @@ fun LectureDetailScreen(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnimatedCard(content: LectureContent) {
     var isVisible by remember { mutableStateOf(false) }
@@ -119,17 +156,22 @@ fun LectureContentCard(content: LectureContent) {
         modifier = Modifier
             .fillMaxWidth()
             .scale(scale.value)
-            .clickable {
-                // Add ripple effect on click
-            }
+            .clickable { }
+            .shadow(
+                elevation = 8.dp,
+                shape = RoundedCornerShape(16.dp)
+            ),
+        shape = RoundedCornerShape(16.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+            // Main content box with background
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp)
+                    .clip(RoundedCornerShape(12.dp))
                     .background(
                         when {
                             lectureId == "colors" -> when (content.english.lowercase()) {
@@ -150,84 +192,91 @@ fun LectureContentCard(content: LectureContent) {
                                 "light blue" -> Color(0xFF03A9F4)
                                 else -> MaterialTheme.colorScheme.surfaceVariant
                             }
-                            else -> MaterialTheme.colorScheme.surfaceVariant
+                            else -> MaterialTheme.colorScheme.surfaceVariant.copy(
+                                alpha = if (isSystemInDarkTheme()) 0.12f else 0.08f
+                            )
                         }
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                if (lectureId == "family") {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Icon(
-                            imageVector = when (content.english.lowercase()) {
-                                "mother" -> Icons.Default.Face
-                                "father" -> Icons.Default.Face4
-                                "elder brother", "younger brother" -> Icons.Default.Man
-                                "elder sister", "younger sister" -> Icons.Default.Woman
-                                "paternal grandfather", "maternal grandfather" -> Icons.Default.Elderly
-                                "paternal grandmother", "maternal grandmother" -> Icons.Default.ElderlyWoman
-                                "paternal uncle", "maternal uncle", "elder paternal uncle", "maternal aunt's husband" -> Icons.Default.Man4
-                                "paternal aunt", "maternal aunt", "elder paternal aunt" -> Icons.Default.Woman2
-                                "son" -> Icons.Default.Boy
-                                "daughter" -> Icons.Default.Girl
-                                "paternal cousin brother", "maternal cousin brother" -> Icons.Default.Person
-                                "paternal cousin sister", "maternal cousin sister" -> Icons.Default.Person4
-                                else -> Icons.Default.Person
-                            },
-                            contentDescription = content.english,
-                            modifier = Modifier.size(100.dp),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            text = content.hindi,
-                            style = MaterialTheme.typography.displayLarge.copy(
-                                fontSize = 60.sp,
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                } else {
-                    Text(
-                        text = content.hindi,
-                        style = MaterialTheme.typography.displayLarge.copy(
-                            fontSize = 120.sp,
-                            fontWeight = FontWeight.Bold
-                        ),
-                        color = if (lectureId == "colors") {
-                            when (content.english.lowercase()) {
-                                "white", "yellow", "light blue", "golden", "silver" -> Color.Black
-                                else -> Color.White
-                            }
-                        } else {
-                            MaterialTheme.colorScheme.onSurfaceVariant
-                        }
+                if (lectureId == "animals") {
+                    AnimatedBackground(
+                        animalType = content.english,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .alpha(0.3f)
                     )
                 }
+                
+                Text(
+                    text = content.hindi,
+                    style = MaterialTheme.typography.displayLarge.copy(
+                        fontSize = 120.sp,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
             
             Spacer(modifier = Modifier.height(16.dp))
             
-            Text(
-                text = content.english,
-                style = MaterialTheme.typography.titleLarge
-            )
-            
-            Text(
-                text = "Pronunciation: ${content.pronunciation}",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            
-            if (content.example != null) {
-                Spacer(modifier = Modifier.height(8.dp))
+            // English translation with icon
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Translate,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Example: ${content.example}",
+                    text = content.english,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Pronunciation with icon
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.RecordVoiceOver,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.secondary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = content.pronunciation,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+            }
+            
+            if (content.example != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                // Example with icon
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.tertiary
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = content.example,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
     }

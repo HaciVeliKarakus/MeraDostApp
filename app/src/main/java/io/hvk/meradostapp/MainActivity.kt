@@ -4,10 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -53,28 +60,41 @@ fun MainScreen(quizViewModel: QuizViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     
+    val shouldShowBottomBar = remember(currentRoute) {
+        when (currentRoute) {
+            Screen.Home.route, Screen.Quiz.route, Screen.Settings.route -> true
+            else -> false
+        }
+    }
+    
     Surface(
         color = MaterialTheme.colorScheme.background
     ) {
         Scaffold(
             bottomBar = {
-                NavigationBar {
-                    listOf(
-                        BottomNavItem.Home,
-                        BottomNavItem.Quiz,
-                        BottomNavItem.Settings
-                    ).forEach { item ->
-                        NavigationBarItem(
-                            icon = { Icon(item.icon, contentDescription = item.title) },
-                            label = { Text(item.title) },
-                            selected = currentRoute == item.route,
-                            onClick = {
-                                navController.navigate(item.route) {
-                                    popUpTo(navController.graph.startDestinationId)
-                                    launchSingleTop = true
+                AnimatedVisibility(
+                    visible = shouldShowBottomBar,
+                    enter = slideInVertically(initialOffsetY = { it }),
+                    exit = slideOutVertically(targetOffsetY = { it })
+                ) {
+                    NavigationBar {
+                        listOf(
+                            BottomNavItem.Home,
+                            BottomNavItem.Quiz,
+                            BottomNavItem.Settings
+                        ).forEach { item ->
+                            NavigationBarItem(
+                                icon = { Icon(item.icon, contentDescription = item.title) },
+                                label = { Text(item.title) },
+                                selected = currentRoute == item.route,
+                                onClick = {
+                                    navController.navigate(item.route) {
+                                        popUpTo(navController.graph.startDestinationId)
+                                        launchSingleTop = true
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
@@ -82,7 +102,12 @@ fun MainScreen(quizViewModel: QuizViewModel) {
             NavHost(
                 navController = navController,
                 startDestination = Screen.Home.route,
-                modifier = Modifier.padding(innerPadding)
+                modifier = Modifier.padding(
+                    bottom = if (shouldShowBottomBar) innerPadding.calculateBottomPadding() else 0.dp,
+                    top = innerPadding.calculateTopPadding(),
+                    start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
+                    end = innerPadding.calculateEndPadding(LocalLayoutDirection.current)
+                )
             ) {
                 composable(Screen.Home.route) { 
                     HomeScreen(

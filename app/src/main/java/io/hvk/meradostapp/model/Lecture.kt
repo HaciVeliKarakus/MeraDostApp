@@ -339,6 +339,162 @@ val lectureCategories = listOf(
                 english = "5 - Five",
                 pronunciation = "paanch",
                 example = "पाँच मिनट (paanch minute) - five minutes"
+            ),
+            LectureContent(
+                hindi = "६ - छह",
+                english = "6 - Six",
+                pronunciation = "chhah",
+                example = "छह महीने (chhah mahine) - six months"
+            ),
+            LectureContent(
+                hindi = "७ - सात",
+                english = "7 - Seven",
+                pronunciation = "saat",
+                example = "सात दिन (saat din) - seven days"
+            ),
+            LectureContent(
+                hindi = "८ - आठ",
+                english = "8 - Eight",
+                pronunciation = "aath",
+                example = "आठ घंटे (aath ghante) - eight hours"
+            ),
+            LectureContent(
+                hindi = "९ - नौ",
+                english = "9 - Nine",
+                pronunciation = "nau",
+                example = "नौ बजे (nau baje) - nine o'clock"
+            ),
+            LectureContent(
+                hindi = "१० - दस",
+                english = "10 - Ten",
+                pronunciation = "das",
+                example = "दस रुपये (das rupaye) - ten rupees"
+            ),
+            LectureContent(
+                hindi = "११ - ग्यारह",
+                english = "11 - Eleven",
+                pronunciation = "gyaarah",
+                example = "ग्यारह साल (gyaarah saal) - eleven years"
+            ),
+            LectureContent(
+                hindi = "१२ - बारह",
+                english = "12 - Twelve",
+                pronunciation = "baarah",
+                example = "बारह महीने (baarah mahine) - twelve months"
+            ),
+            LectureContent(
+                hindi = "१३ - तेरह",
+                english = "13 - Thirteen",
+                pronunciation = "terah",
+                example = "तेरह तारीख (terah tareekh) - thirteenth date"
+            ),
+            LectureContent(
+                hindi = "१४ - चौदह",
+                english = "14 - Fourteen",
+                pronunciation = "chaudah",
+                example = "चौदह साल (chaudah saal) - fourteen years"
+            ),
+            LectureContent(
+                hindi = "१५ - पंद्रह",
+                english = "15 - Fifteen",
+                pronunciation = "pandrah",
+                example = "पंद्रह मिनट (pandrah minat) - fifteen minutes"
+            ),
+            LectureContent(
+                hindi = "१६ - सोलह",
+                english = "16 - Sixteen",
+                pronunciation = "solah",
+                example = "सोलह साल (solah saal) - sixteen years"
+            ),
+            LectureContent(
+                hindi = "१७ - सत्रह",
+                english = "17 - Seventeen",
+                pronunciation = "satrah",
+                example = "सत्रह लोग (satrah log) - seventeen people"
+            ),
+            LectureContent(
+                hindi = "१८ - अठारह",
+                english = "18 - Eighteen",
+                pronunciation = "athaarah",
+                example = "अठारह साल (athaarah saal) - eighteen years"
+            ),
+            LectureContent(
+                hindi = "१९ - उन्नीस",
+                english = "19 - Nineteen",
+                pronunciation = "unnees",
+                example = "उन्नीस दिन (unnees din) - nineteen days"
+            ),
+            LectureContent(
+                hindi = "२० - बीस",
+                english = "20 - Twenty",
+                pronunciation = "bees",
+                example = "बीस रुपये (bees rupaye) - twenty rupees"
+            ),
+            LectureContent(
+                hindi = "३० - तीस",
+                english = "30 - Thirty",
+                pronunciation = "tees",
+                example = "तीस मिनट (tees minat) - thirty minutes"
+            ),
+            LectureContent(
+                hindi = "४० - चालीस",
+                english = "40 - Forty",
+                pronunciation = "chaalees",
+                example = "चालीस किलो (chaalees kilo) - forty kilos"
+            ),
+            LectureContent(
+                hindi = "५० - पचास",
+                english = "50 - Fifty",
+                pronunciation = "pachaas",
+                example = "पचास प्रतिशत (pachaas pratishat) - fifty percent"
+            ),
+            LectureContent(
+                hindi = "६० - साठ",
+                english = "60 - Sixty",
+                pronunciation = "saath",
+                example = "साठ सेकंड (saath second) - sixty seconds"
+            ),
+            LectureContent(
+                hindi = "७० - सत्तर",
+                english = "70 - Seventy",
+                pronunciation = "sattar",
+                example = "सत्तर साल (sattar saal) - seventy years"
+            ),
+            LectureContent(
+                hindi = "८० - अस्सी",
+                english = "80 - Eighty",
+                pronunciation = "assi",
+                example = "अस्सी किलोमीटर (assi kilometer) - eighty kilometers"
+            ),
+            LectureContent(
+                hindi = "९० - नब्बे",
+                english = "90 - Ninety",
+                pronunciation = "nabbe",
+                example = "नब्बे प्रतिशत (nabbe pratishat) - ninety percent"
+            ),
+            LectureContent(
+                hindi = "१०० - सौ",
+                english = "100 - Hundred",
+                pronunciation = "sau",
+                example = "सौ रुपये (sau rupaye) - hundred rupees"
+            ),
+            LectureContent(
+                hindi = "हज़ार",
+                english = "Thousand",
+                pronunciation = "hazaar",
+                example = "एक हज़ार रुपये (ek hazaar rupaye) - one thousand rupees"
+            ),
+            LectureContent(
+                hindi = "लाख",
+                english = "Hundred Thousand",
+                pronunciation = "laakh",
+                example = "एक लाख रुपये (ek laakh rupaye) - one hundred thousand rupees"
+            ),
+            LectureContent(
+                hindi = "करोड़",
+                english = "Ten Million",
+                pronunciation = "karod",
+                example = "एक करोड़ रुपये (ek karod rupaye) - ten million rupees"
             )
         )
     ),
@@ -382,7 +538,7 @@ val lectureCategories = listOf(
                 hindi = "सफ़ेद",
                 english = "White",
                 pronunciation = "safed",
-                example = "सफ़ेद कपड़ा (safed kapda) - white cloth"
+                example = "सफ़ेद कप़ा (safed kapda) - white cloth"
             ),
             LectureContent(
                 hindi = "नारंगी",
@@ -492,7 +648,7 @@ val lectureCategories = listOf(
                 hindi = "दादी",
                 english = "Paternal Grandmother",
                 pronunciation = "daadi",
-                example = "मे���ी दादी (meri daadi) - my paternal grandmother"
+                example = "मेरी दादी (meri daadi) - my paternal grandmother"
             ),
             LectureContent(
                 hindi = "नाना",
@@ -531,7 +687,7 @@ val lectureCategories = listOf(
                 example = "मेरी ताई (meri tai) - my elder paternal aunt"
             ),
             LectureContent(
-                hindi = "मामा",
+                hindi = "मा��ा",
                 english = "Maternal Uncle",
                 pronunciation = "maama",
                 example = "मेरे मामा (mere maama) - my maternal uncle"
@@ -649,10 +805,34 @@ val lectureCategories = listOf(
                 example = "काली बिल्ली (kaali billi) - black cat"
             ),
             LectureContent(
-                hindi = "हाथी",
-                english = "Elephant",
-                pronunciation = "haathi",
-                example = "बड़ा हाथी (bada haathi) - big elephant"
+                hindi = "हाय",
+                english = "Cow",
+                pronunciation = "gaay",
+                example = "दूध देने वाली गाय (doodh dene wali gaay) - milk-giving cow"
+            ),
+            LectureContent(
+                hindi = "बकरी",
+                english = "Goat",
+                pronunciation = "bakri",
+                example = "छोटी बकरी (chhoti bakri) - small goat"
+            ),
+            LectureContent(
+                hindi = "घोड़ा",
+                english = "Horse",
+                pronunciation = "ghoda",
+                example = "तेज़ घोड़ा (tez ghoda) - fast horse"
+            ),
+            LectureContent(
+                hindi = "भेड़",
+                english = "Sheep",
+                pronunciation = "bhed",
+                example = "सफेद भेड़ (safed bhed) - white sheep"
+            ),
+            LectureContent(
+                hindi = "मुर्गी",
+                english = "Hen",
+                pronunciation = "murgi",
+                example = "अंडे देने वाली मुर्गी (ande dene wali murgi) - egg-laying hen"
             ),
             LectureContent(
                 hindi = "शेर",
@@ -661,10 +841,100 @@ val lectureCategories = listOf(
                 example = "जंगल का राजा शेर (jangal ka raja sher) - lion, king of jungle"
             ),
             LectureContent(
+                hindi = "बाघ",
+                english = "Tiger",
+                pronunciation = "baagh",
+                example = "बंगाल का बाघ (bengal ka baagh) - Bengal tiger"
+            ),
+            LectureContent(
+                hindi = "हाथी",
+                english = "Elephant",
+                pronunciation = "haathi",
+                example = "बड़ा हाथी (bada haathi) - big elephant"
+            ),
+            LectureContent(
+                hindi = "भालू",
+                english = "Bear",
+                pronunciation = "bhaalu",
+                example = "भूरा भालू (bhoora bhaalu) - brown bear"
+            ),
+            LectureContent(
                 hindi = "बंदर",
                 english = "Monkey",
                 pronunciation = "bandar",
                 example = "छोटा बंदर (chota bandar) - small monkey"
+            ),
+            LectureContent(
+                hindi = "जेब्रा",
+                english = "Zebra",
+                pronunciation = "zebra",
+                example = "धारीदार जेब्रा (dharidaar zebra) - striped zebra"
+            ),
+            LectureContent(
+                hindi = "जिराफ",
+                english = "Giraffe",
+                pronunciation = "giraaf",
+                example = "लंबी गर्दन वाला जिराफ (lambi gardan wala giraaf) - long-necked giraffe"
+            ),
+            LectureContent(
+                hindi = "तोता",
+                english = "Parrot",
+                pronunciation = "tota",
+                example = "हरा तोता (hara tota) - green parrot"
+            ),
+            LectureContent(
+                hindi = "कबूतर",
+                english = "Pigeon",
+                pronunciation = "kabutar",
+                example = "सफेद कबूतर (safed kabutar) - white pigeon"
+            ),
+            LectureContent(
+                hindi = "कौआ",
+                english = "Crow",
+                pronunciation = "kauaa",
+                example = "काला कौआ (kaala kauaa) - black crow"
+            ),
+            LectureContent(
+                hindi = "मोर",
+                english = "Peacock",
+                pronunciation = "mor",
+                example = "नृत्य करता मोर (nritya karta mor) - dancing peacock"
+            ),
+            LectureContent(
+                hindi = "तितली",
+                english = "Butterfly",
+                pronunciation = "titli",
+                example = "रंगीन तितली (rangeen titli) - colorful butterfly"
+            ),
+            LectureContent(
+                hindi = "मधुमक्खी",
+                english = "Bee",
+                pronunciation = "madhumakhi",
+                example = "शहद की मधुमक्खी (shahad ki madhumakhi) - honey bee"
+            ),
+            LectureContent(
+                hindi = "चींटी",
+                english = "Ant",
+                pronunciation = "cheenti",
+                example = "छोटी चींटी (chhoti cheenti) - small ant"
+            ),
+            LectureContent(
+                hindi = "मछली",
+                english = "Fish",
+                pronunciation = "machhli",
+                example = "तालाब की मछली (talaab ki machhli) - pond fish"
+            ),
+            LectureContent(
+                hindi = "केकड़ा",
+                english = "Crab",
+                pronunciation = "kekda",
+                example = "लाल केकड़ा (laal kekda) - red crab"
+            ),
+            LectureContent(
+                hindi = "व्हेल",
+                english = "Whale",
+                pronunciation = "whale",
+                example = "नीली व्हेल (neeli whale) - blue whale"
             )
         )
     ),
@@ -678,7 +948,7 @@ val lectureCategories = listOf(
                 hindi = "चावल",
                 english = "Rice",
                 pronunciation = "chawal",
-                example = "गरम च���वल (garam chawal) - hot rice"
+                example = "गरम चवल (garam chawal) - hot rice"
             ),
             LectureContent(
                 hindi = "रोटी",
@@ -703,6 +973,196 @@ val lectureCategories = listOf(
                 english = "Yogurt",
                 pronunciation = "dahi",
                 example = "ठंडा दही (thanda dahi) - cold yogurt"
+            )
+        )
+    ),
+    Lecture(
+        id = "greetings",
+        title = "Greetings",
+        description = "Common Hindi greetings and phrases",
+        icon = Icons.Default.WavingHand,
+        content = listOf(
+            LectureContent(
+                hindi = "नमस्ते",
+                english = "Hello/Greetings",
+                pronunciation = "namaste",
+                example = "नमस्ते, कैसे हैं आप? (namaste, kaise hain aap?) - Hello, how are you?"
+            ),
+            LectureContent(
+                hindi = "शुभ प्रभात",
+                english = "Good Morning",
+                pronunciation = "shubh prabhat",
+                example = "शुभ प्रभात, सर (shubh prabhat, sir) - Good morning, sir"
+            ),
+            LectureContent(
+                hindi = "शुभ रात्रि",
+                english = "Good Night",
+                pronunciation = "shubh ratri",
+                example = "शुभ रात्रि, मां (shubh ratri, maa) - Good night, mother"
+            ),
+            LectureContent(
+                hindi = "धन्यवाद",
+                english = "Thank You",
+                pronunciation = "dhanyavaad",
+                example = "आपका धन्यवाद (aapka dhanyavaad) - Thank you"
+            ),
+            LectureContent(
+                hindi = "फिर मिलेंगे",
+                english = "See you again",
+                pronunciation = "phir milenge",
+                example = "फिर मिलेंगे, दोस्त (phir milenge, dost) - See you again, friend"
+            )
+        )
+    ),
+    Lecture(
+        id = "time",
+        title = "Time",
+        description = "Learn to tell time in Hindi",
+        icon = Icons.Default.Schedule,
+        content = listOf(
+            LectureContent(
+                hindi = "समय",
+                english = "Time",
+                pronunciation = "samay",
+                example = "क्या समय हुआ है? (kya samay hua hai?) - What time is it?"
+            ),
+            LectureContent(
+                hindi = "सुबह",
+                english = "Morning",
+                pronunciation = "subah",
+                example = "सुबह का समय (subah ka samay) - Morning time"
+            ),
+            LectureContent(
+                hindi = "दोपहर",
+                english = "Afternoon",
+                pronunciation = "dopahar",
+                example = "दोपहर का खाना (dopahar ka khana) - Lunch"
+            ),
+            LectureContent(
+                hindi = "शाम",
+                english = "Evening",
+                pronunciation = "shaam",
+                example = "शाम की चाय (shaam ki chai) - Evening tea"
+            ),
+            LectureContent(
+                hindi = "रात",
+                english = "Night",
+                pronunciation = "raat",
+                example = "रात का खाना (raat ka khana) - Dinner"
+            )
+        )
+    ),
+    Lecture(
+        id = "weather",
+        title = "Weather",
+        description = "Weather terms in Hindi",
+        icon = Icons.Default.WbSunny,
+        content = listOf(
+            LectureContent(
+                hindi = "मौसम",
+                english = "Weather",
+                pronunciation = "mausam",
+                example = "आज का मौसम (aaj ka mausam) - Today's weather"
+            ),
+            LectureContent(
+                hindi = "गरमी",
+                english = "Hot/Heat",
+                pronunciation = "garmi",
+                example = "बहुत गरमी है (bahut garmi hai) - It's very hot"
+            ),
+            LectureContent(
+                hindi = "सर्दी",
+                english = "Cold",
+                pronunciation = "sardi",
+                example = "सर्दी का मौसम (sardi ka mausam) - Winter season"
+            ),
+            LectureContent(
+                hindi = "बारिश",
+                english = "Rain",
+                pronunciation = "baarish",
+                example = "बारिश हो रही है (baarish ho rahi hai) - It's raining"
+            ),
+            LectureContent(
+                hindi = "धूप",
+                english = "Sunshine",
+                pronunciation = "dhoop",
+                example = "तेज धूप है (tez dhoop hai) - Strong sunshine"
+            )
+        )
+    ),
+    Lecture(
+        id = "emotions",
+        title = "Emotions",
+        description = "Express feelings in Hindi",
+        icon = Icons.Default.EmojiEmotions,
+        content = listOf(
+            LectureContent(
+                hindi = "खुश",
+                english = "Happy",
+                pronunciation = "khush",
+                example = "मैं खुश हूं (main khush hoon) - I am happy"
+            ),
+            LectureContent(
+                hindi = "दुखी",
+                english = "Sad",
+                pronunciation = "dukhi",
+                example = "वह दुखी है (woh dukhi hai) - He/She is sad"
+            ),
+            LectureContent(
+                hindi = "गुस्सा",
+                english = "Angry",
+                pronunciation = "gussa",
+                example = "मुझे गुस्सा आ रहा है (mujhe gussa aa raha hai) - I am getting angry"
+            ),
+            LectureContent(
+                hindi = "थका",
+                english = "Tired",
+                pronunciation = "thaka",
+                example = "मैं थका हुआ हूं (main thaka hua hoon) - I am tired"
+            ),
+            LectureContent(
+                hindi = "उत्साहित",
+                english = "Excited",
+                pronunciation = "utsahit",
+                example = "बच्चे उत्साहित हैं (bachche utsahit hain) - Children are excited"
+            )
+        )
+    ),
+    Lecture(
+        id = "places",
+        title = "Places",
+        description = "Common places in Hindi",
+        icon = Icons.Default.Place,
+        content = listOf(
+            LectureContent(
+                hindi = "घर",
+                english = "Home",
+                pronunciation = "ghar",
+                example = "मेरा घर (mera ghar) - My home"
+            ),
+            LectureContent(
+                hindi = "बाज़ार",
+                english = "Market",
+                pronunciation = "bazaar",
+                example = "बाज़ार जाना (bazaar jana) - Going to market"
+            ),
+            LectureContent(
+                hindi = "स्कूल",
+                english = "School",
+                pronunciation = "school",
+                example = "स्कूल की छुट्टी (school ki chhutti) - School holiday"
+            ),
+            LectureContent(
+                hindi = "अस्पताल",
+                english = "Hospital",
+                pronunciation = "aspatal",
+                example = "नया अस्पताल (naya aspatal) - New hospital"
+            ),
+            LectureContent(
+                hindi = "मंदिर",
+                english = "Temple",
+                pronunciation = "mandir",
+                example = "मंदिर में पूजा (mandir mein pooja) - Prayer in temple"
             )
         )
     )
