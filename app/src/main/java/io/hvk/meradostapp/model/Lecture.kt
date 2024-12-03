@@ -413,7 +413,7 @@ val lectureCategories = listOf(
                 example = "सत्रह लोग (satrah log) - seventeen people"
             ),
             LectureContent(
-                hindi = "१८ - अठारह",
+                hindi = "१�� - अठारह",
                 english = "18 - Eighteen",
                 pronunciation = "athaarah",
                 example = "अठारह साल (athaarah saal) - eighteen years"
@@ -1368,6 +1368,113 @@ val lectureCategories = listOf(
                 english = "Temple",
                 pronunciation = "mandir",
                 example = "मंदिर में पूजा (mandir mein pooja) - Prayer in temple"
+            )
+        )
+    ),
+    Lecture(
+        id = "technology",
+        title = "Technology",
+        description = "Modern tech terms in Hindi",
+        icon = Icons.Default.Computer,
+        content = listOf(
+            // Basic Devices
+            LectureContent(
+                hindi = "कंप्यूटर",
+                english = "Computer",
+                pronunciation = "computer",
+                example = "मेरा कंप्यूटर नया है (mera computer naya hai) - My computer is new"
+            ),
+            LectureContent(
+                hindi = "मोबाइल फोन",
+                english = "Mobile Phone",
+                pronunciation = "mobile phone",
+                example = "मोबाइल फोन की बैटरी कम है (mobile phone ki battery kam hai) - Mobile phone battery is low"
+            ),
+            LectureContent(
+                hindi = "लैपटॉप",
+                english = "Laptop",
+                pronunciation = "laptop",
+                example = "मैं लैपटॉप पर काम करता हूं (main laptop par kaam karta hoon) - I work on laptop"
+            ),
+            
+            // Internet Terms
+            LectureContent(
+                hindi = "इंटरनेट",
+                english = "Internet",
+                pronunciation = "internet",
+                example = "इंटरनेट की स्पीड अच्छी है (internet ki speed achhi hai) - Internet speed is good"
+            ),
+            LectureContent(
+                hindi = "वाई-फाई",
+                english = "Wi-Fi",
+                pronunciation = "wi-fi",
+                example = "वाई-फाई कनेक्शन धीमा है (wi-fi connection dheema hai) - Wi-Fi connection is slow"
+            ),
+            LectureContent(
+                hindi = "वेबसाइट",
+                english = "Website",
+                pronunciation = "website",
+                example = "यह वेबसाइट बहुत अच्छी है (yeh website bahut achhi hai) - This website is very good"
+            ),
+
+            // Software Terms
+            LectureContent(
+                hindi = "ऐप",
+                english = "App",
+                pronunciation = "app",
+                example = "नया ऐप डाउनलोड करें (naya app download karein) - Download new app"
+            ),
+            LectureContent(
+                hindi = "सॉफ्टवेयर",
+                english = "Software",
+                pronunciation = "software",
+                example = "सॉफ्टवेयर अपडेट करना है (software update karna hai) - Need to update software"
+            ),
+            LectureContent(
+                hindi = "पासवर्ड",
+                english = "Password",
+                pronunciation = "password",
+                example = "अपना पासवर्ड बदलें (apna password badlein) - Change your password"
+            ),
+
+            // Actions
+            LectureContent(
+                hindi = "डाउनलोड",
+                english = "Download",
+                pronunciation = "download",
+                example = "फाइल डाउनलोड हो रही है (file download ho rahi hai) - File is downloading"
+            ),
+            LectureContent(
+                hindi = "अपलोड",
+                english = "Upload",
+                pronunciation = "upload",
+                example = "फोटो अपलोड करें (photo upload karein) - Upload photo"
+            ),
+            LectureContent(
+                hindi = "शेयर",
+                english = "Share",
+                pronunciation = "share",
+                example = "लिंक शेयर करें (link share karein) - Share the link"
+            ),
+
+            // Hardware
+            LectureContent(
+                hindi = "कीबोर्ड",
+                english = "Keyboard",
+                pronunciation = "keyboard",
+                example = "कीबोर्ड टाइपिंग (keyboard typing) - Keyboard typing"
+            ),
+            LectureContent(
+                hindi = "माउस",
+                english = "Mouse",
+                pronunciation = "mouse",
+                example = "माउस क्लिक करें (mouse click karein) - Click the mouse"
+            ),
+            LectureContent(
+                hindi = "प्रिंटर",
+                english = "Printer",
+                pronunciation = "printer",
+                example = "प्रिंटर से प्रिंट करें (printer se print karein) - Print from printer"
             )
         )
     )
