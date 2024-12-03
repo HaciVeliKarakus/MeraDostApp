@@ -65,7 +65,7 @@ fun LectureDetailScreen(
             ) {
                 items(
                     items = lecture?.content ?: emptyList(),
-                    key = { it.hindi } // Use hindi text as stable key
+                    key = { it.hindi + it.english } // Use hindi text as stable key
                 ) { content ->
                     AnimatedCard(content = content)
                 }

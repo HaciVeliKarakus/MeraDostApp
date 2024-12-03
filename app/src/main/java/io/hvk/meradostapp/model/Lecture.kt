@@ -64,6 +64,12 @@ val lectureCategories = listOf(
             ),
             LectureContent(
                 hindi = "ए",
+                english = "ri",
+                pronunciation = "ri as in rich",
+                example = "ऋषि (rishi) - sage"
+            ),
+            LectureContent(
+                hindi = "ए",
                 english = "e",
                 pronunciation = "e as in way",
                 example = "एक (ek) - one"
@@ -87,6 +93,18 @@ val lectureCategories = listOf(
                 example = "औरत (aurat) - woman"
             ),
             LectureContent(
+                hindi = "अं",
+                english = "am",
+                pronunciation = "am as in sum",
+                example = "अंक (ank) - number"
+            ),
+            LectureContent(
+                hindi = "अः",
+                english = "ah",
+                pronunciation = "ah with aspiration",
+                example = "अंतः (antah) - inner"
+            ),
+            LectureContent(
                 hindi = "क",
                 english = "ka",
                 pronunciation = "ka as in car",
@@ -97,6 +115,192 @@ val lectureCategories = listOf(
                 english = "kha",
                 pronunciation = "kha as in khan",
                 example = "खाना (khana) - food"
+            ),
+            LectureContent(
+                hindi = "ग",
+                english = "ga",
+                pronunciation = "ga as in gun",
+                example = "गाना (gana) - song"
+            ),
+            LectureContent(
+                hindi = "घ",
+                english = "gha",
+                pronunciation = "gha as in ghost",
+                example = "घर (ghar) - house"
+            ),
+            LectureContent(
+                hindi = "ङ",
+                english = "nga",
+                pronunciation = "nga as in sing",
+                example = "रंग (rang) - color"
+            ),
+            LectureContent(
+                hindi = "च",
+                english = "cha",
+                pronunciation = "cha as in chair",
+                example = "चाय (chai) - tea"
+            ),
+            LectureContent(
+                hindi = "छ",
+                english = "chha",
+                pronunciation = "chha as in church",
+                example = "छाता (chhata) - umbrella"
+            ),
+            LectureContent(
+                hindi = "ज",
+                english = "ja",
+                pronunciation = "ja as in joy",
+                example = "जल (jal) - water"
+            ),
+            LectureContent(
+                hindi = "झ",
+                english = "jha",
+                pronunciation = "jha as in hedge",
+                example = "झंडा (jhanda) - flag"
+            ),
+            LectureContent(
+                hindi = "ञ",
+                english = "nya",
+                pronunciation = "nya as in canyon",
+                example = "ज्ञान (gyan) - knowledge"
+            ),
+            LectureContent(
+                hindi = "ट",
+                english = "ta",
+                pronunciation = "ta as in top",
+                example = "टमाटर (tamatar) - tomato"
+            ),
+            LectureContent(
+                hindi = "ठ",
+                english = "tha",
+                pronunciation = "tha as in thumb",
+                example = "ठंडा (thanda) - cold"
+            ),
+            LectureContent(
+                hindi = "ड",
+                english = "da",
+                pronunciation = "da as in dog",
+                example = "डर (dar) - fear"
+            ),
+            LectureContent(
+                hindi = "ढ",
+                english = "dha",
+                pronunciation = "dha as in dharma",
+                example = "ढोल (dhol) - drum"
+            ),
+            LectureContent(
+                hindi = "ण",
+                english = "na",
+                pronunciation = "na as in under",
+                example = "गणेश (ganesh) - Ganesh"
+            ),
+            LectureContent(
+                hindi = "त",
+                english = "ta",
+                pronunciation = "ta as in table",
+                example = "तारा (tara) - star"
+            ),
+            LectureContent(
+                hindi = "थ",
+                english = "tha",
+                pronunciation = "tha as in thumb",
+                example = "थाली (thali) - plate"
+            ),
+            LectureContent(
+                hindi = "द",
+                english = "da",
+                pronunciation = "da as in day",
+                example = "दिन (din) - day"
+            ),
+            LectureContent(
+                hindi = "ध",
+                english = "dha",
+                pronunciation = "dha as in dharma",
+                example = "धन (dhan) - wealth"
+            ),
+            LectureContent(
+                hindi = "न",
+                english = "na",
+                pronunciation = "na as in name",
+                example = "नाम (naam) - name"
+            ),
+            LectureContent(
+                hindi = "प",
+                english = "pa",
+                pronunciation = "pa as in pen",
+                example = "पानी (pani) - water"
+            ),
+            LectureContent(
+                hindi = "फ",
+                english = "pha",
+                pronunciation = "pha as in phone",
+                example = "फल (phal) - fruit"
+            ),
+            LectureContent(
+                hindi = "ब",
+                english = "ba",
+                pronunciation = "ba as in ball",
+                example = "बस (bas) - bus"
+            ),
+            LectureContent(
+                hindi = "भ",
+                english = "bha",
+                pronunciation = "bha as in bharat",
+                example = "भारत (bharat) - India"
+            ),
+            LectureContent(
+                hindi = "म",
+                english = "ma",
+                pronunciation = "ma as in mother",
+                example = "माता (mata) - mother"
+            ),
+            LectureContent(
+                hindi = "य",
+                english = "ya",
+                pronunciation = "ya as in yard",
+                example = "याद (yaad) - memory"
+            ),
+            LectureContent(
+                hindi = "र",
+                english = "ra",
+                pronunciation = "ra as in run",
+                example = "राम (ram) - Ram"
+            ),
+            LectureContent(
+                hindi = "ल",
+                english = "la",
+                pronunciation = "la as in lamp",
+                example = "लाल (lal) - red"
+            ),
+            LectureContent(
+                hindi = "व",
+                english = "va/wa",
+                pronunciation = "va as in water",
+                example = "वन (van) - forest"
+            ),
+            LectureContent(
+                hindi = "श",
+                english = "sha",
+                pronunciation = "sha as in sharp",
+                example = "शांति (shanti) - peace"
+            ),
+            LectureContent(
+                hindi = "ष",
+                english = "sha",
+                pronunciation = "sha as in sharp",
+                example = "कृष्ण (krishna) - Krishna"
+            ),
+            LectureContent(
+                hindi = "स",
+                english = "sa",
+                pronunciation = "sa as in sun",
+                example = "सूरज (suraj) - sun"
+            ),
+            LectureContent(
+                hindi = "ह",
+                english = "ha",
+                pronunciation = "ha as in house",
+                example = "हवा (hava) - air"
             )
         )
     ),
@@ -288,7 +492,7 @@ val lectureCategories = listOf(
                 hindi = "दादी",
                 english = "Paternal Grandmother",
                 pronunciation = "daadi",
-                example = "मेरी दादी (meri daadi) - my paternal grandmother"
+                example = "मे���ी दादी (meri daadi) - my paternal grandmother"
             ),
             LectureContent(
                 hindi = "नाना",
@@ -474,7 +678,7 @@ val lectureCategories = listOf(
                 hindi = "चावल",
                 english = "Rice",
                 pronunciation = "chawal",
-                example = "गरम चावल (garam chawal) - hot rice"
+                example = "गरम च���वल (garam chawal) - hot rice"
             ),
             LectureContent(
                 hindi = "रोटी",
