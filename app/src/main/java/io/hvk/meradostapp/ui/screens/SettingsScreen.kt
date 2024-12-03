@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import io.hvk.meradostapp.ui.theme.LocalThemeState
 
 @Composable
 fun SettingsScreen() {
-    var darkMode by remember { mutableStateOf(false) }
+    val themeState = LocalThemeState.current
     
     Column(
         modifier = Modifier
@@ -30,8 +32,10 @@ fun SettingsScreen() {
                     headlineContent = { Text("Dark Mode") },
                     trailingContent = {
                         Switch(
-                            checked = darkMode,
-                            onCheckedChange = { darkMode = it }
+                            checked = themeState.isDarkMode,
+                            onCheckedChange = { 
+                                themeState.toggleTheme(it)
+                            }
                         )
                     }
                 )
