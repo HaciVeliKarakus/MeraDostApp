@@ -21,22 +21,25 @@ import io.hvk.meradostapp.ui.screens.*
 import io.hvk.meradostapp.ui.theme.LocalThemeState
 import io.hvk.meradostapp.ui.theme.MeraDostAppTheme
 import io.hvk.meradostapp.ui.theme.ThemeState
+import io.hvk.meradostapp.ui.viewmodel.QuizViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : ComponentActivity() {
     private lateinit var themeState: ThemeState
+    private lateinit var quizViewModel: QuizViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Initialize PreferencesManager and ThemeState
         val preferencesManager = PreferencesManager(applicationContext)
         themeState = ThemeState(preferencesManager)
+        quizViewModel = ViewModelProvider(this)[QuizViewModel::class.java]
         
         enableEdgeToEdge()
         setContent {
             CompositionLocalProvider(LocalThemeState provides themeState) {
                 MeraDostAppTheme {
-                    MainScreen()
+                    MainScreen(quizViewModel)
                 }
             }
         }
@@ -45,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(quizViewModel: QuizViewModel) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -84,6 +87,7 @@ fun MainScreen() {
                 composable(Screen.Home.route) { HomeScreen() }
                 composable(Screen.Quiz.route) { 
                     QuizScreen(
+                        quizViewModel = quizViewModel,
                         onCategoryClick = { categoryId ->
                             navController.navigate(Screen.QuizCategory.createRoute(categoryId))
                         }
@@ -96,10 +100,15 @@ fun MainScreen() {
                     val categoryId = backStackEntry.arguments?.getString("categoryId")
                     QuizCategoryScreen(
                         categoryId = categoryId,
+                        quizViewModel = quizViewModel,
                         onBackClick = { navController.navigateUp() }
                     )
                 }
-                composable(Screen.Settings.route) { SettingsScreen() }
+                composable(Screen.Settings.route) { 
+                    SettingsScreen(
+                        onClearProgress = { quizViewModel.clearAllProgress() }
+                    )
+                }
             }
         }
     }

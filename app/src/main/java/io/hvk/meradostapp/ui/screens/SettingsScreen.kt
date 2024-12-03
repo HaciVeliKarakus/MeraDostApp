@@ -9,7 +9,34 @@ import androidx.compose.ui.unit.dp
 import io.hvk.meradostapp.ui.theme.LocalThemeState
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    onClearProgress: () -> Unit
+) {
+    var showClearDialog by remember { mutableStateOf(false) }
+    
+    if (showClearDialog) {
+        AlertDialog(
+            onDismissRequest = { showClearDialog = false },
+            title = { Text("Clear Progress") },
+            text = { Text("Are you sure you want to clear all quiz progress? This action cannot be undone.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        onClearProgress()
+                        showClearDialog = false
+                    }
+                ) {
+                    Text("Clear")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showClearDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+
     val themeState = LocalThemeState.current
     
     Column(
@@ -45,7 +72,7 @@ fun SettingsScreen() {
                     supportingContent = { Text("Reset all your learning progress") },
                     trailingContent = {
                         TextButton(
-                            onClick = { /* Show confirmation dialog */ }
+                            onClick = { showClearDialog = true }
                         ) {
                             Text("Clear")
                         }

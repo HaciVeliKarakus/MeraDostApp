@@ -9,17 +9,25 @@ import androidx.compose.ui.unit.dp
 import io.hvk.meradostapp.model.Quiz
 import io.hvk.meradostapp.model.QuizData
 import io.hvk.meradostapp.model.quizCategories
+import io.hvk.meradostapp.ui.viewmodel.QuizViewModel
 
 @Composable
 fun QuizCategoryScreen(
     categoryId: String?,
+    quizViewModel: QuizViewModel,
     onBackClick: () -> Unit
 ) {
     val category = quizCategories.find { it.id == categoryId }
     val quizzes = QuizData.getQuizzesByCategory(categoryId ?: "")
-    var currentQuizIndex by remember { mutableStateOf(0) }
+    var currentQuizIndex by remember { mutableIntStateOf(0) }
     var selectedAnswer by remember { mutableStateOf<String?>(null) }
     var showExplanation by remember { mutableStateOf(false) }
+    
+    LaunchedEffect(currentQuizIndex) {
+        if (categoryId != null) {
+            quizViewModel.updateProgress(categoryId, currentQuizIndex)
+        }
+    }
     
     Column(
         modifier = Modifier

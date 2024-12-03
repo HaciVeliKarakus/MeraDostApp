@@ -6,15 +6,20 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import io.hvk.meradostapp.data.db.QuizProgress
 import io.hvk.meradostapp.model.QuizCategory
 import io.hvk.meradostapp.model.quizCategories
+import io.hvk.meradostapp.ui.viewmodel.QuizViewModel
 
 @Composable
 fun QuizScreen(
+    quizViewModel: QuizViewModel,
     onCategoryClick: (String) -> Unit
 ) {
     Column(
@@ -34,8 +39,12 @@ fun QuizScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(quizCategories) { category ->
+                val progress by quizViewModel.getProgressForCategory(category.id)
+                    .collectAsState(initial = null)
+                
                 QuizCategoryCard(
                     category = category,
+                    progress = progress,
                     onClick = { onCategoryClick(category.id) }
                 )
             }
@@ -47,6 +56,7 @@ fun QuizScreen(
 @Composable
 fun QuizCategoryCard(
     category: QuizCategory,
+    progress: QuizProgress?,
     onClick: () -> Unit
 ) {
     ElevatedCard(
@@ -85,6 +95,18 @@ fun QuizCategoryCard(
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            
+            if (progress != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                LinearProgressIndicator(
+                    progress = progress.completedQuizzes.toFloat() / progress.totalQuizzes,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "${progress.completedQuizzes}/${progress.totalQuizzes} completed",
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 } 
