@@ -84,7 +84,13 @@ fun MainScreen(quizViewModel: QuizViewModel) {
                 startDestination = Screen.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(Screen.Home.route) { HomeScreen() }
+                composable(Screen.Home.route) { 
+                    HomeScreen(
+                        onLectureClick = { lectureId ->
+                            navController.navigate(Screen.LectureDetail.createRoute(lectureId))
+                        }
+                    )
+                }
                 composable(Screen.Quiz.route) { 
                     QuizScreen(
                         quizViewModel = quizViewModel,
@@ -107,6 +113,16 @@ fun MainScreen(quizViewModel: QuizViewModel) {
                 composable(Screen.Settings.route) { 
                     SettingsScreen(
                         onClearProgress = { quizViewModel.clearAllProgress() }
+                    )
+                }
+                composable(
+                    route = Screen.LectureDetail.route,
+                    arguments = listOf(navArgument("lectureId") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val lectureId = backStackEntry.arguments?.getString("lectureId")
+                    LectureDetailScreen(
+                        lectureId = lectureId,
+                        onBackClick = { navController.navigateUp() }
                     )
                 }
             }

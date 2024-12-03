@@ -1,72 +1,100 @@
 package io.hvk.meradostapp.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import io.hvk.meradostapp.model.Lecture
+import io.hvk.meradostapp.model.lectureCategories
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onLectureClick: (String) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         Text(
-            text = "Progress Overview",
+            text = "Learn Hindi",
             style = MaterialTheme.typography.headlineMedium
         )
+        
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        Text(
+            text = "Select a category to start learning",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        
         Spacer(modifier = Modifier.height(16.dp))
         
-        // Progress Card
-        ElevatedCard(
-            modifier = Modifier.fillMaxWidth()
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Text(
-                    text = "Current Progress",
-                    style = MaterialTheme.typography.titleMedium
-                )
-                LinearProgressIndicator(
-                    progress = 0.7f,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                )
-                Text(
-                    text = "70% Complete",
-                    style = MaterialTheme.typography.bodyMedium
+            items(lectureCategories) { lecture ->
+                LectureCard(
+                    lecture = lecture,
+                    onClick = { onLectureClick(lecture.id) }
                 )
             }
         }
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        // Lessons Section
-        Text(
-            text = "Today's Lessons",
-            style = MaterialTheme.typography.titleLarge
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        
-        // Sample Lessons List
-        ElevatedCard(
-            modifier = Modifier.fillMaxWidth()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LectureCard(
+    lecture: Lecture,
+    onClick: () -> Unit
+) {
+    ElevatedCard(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(1f)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Column {
-                ListItem(
-                    headlineContent = { Text("Basic Greetings") },
-                    supportingContent = { Text("Learn common Hindi greetings") }
-                )
-                Divider()
-                ListItem(
-                    headlineContent = { Text("Numbers 1-10") },
-                    supportingContent = { Text("Master counting in Hindi") }
-                )
-            }
+            Icon(
+                imageVector = lecture.icon,
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            Text(
+                text = lecture.title,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            
+            Text(
+                text = lecture.description,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp)
+            )
         }
     }
 } 
