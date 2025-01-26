@@ -19,7 +19,7 @@ fun AnimatedIcon(
     modifier: Modifier = Modifier,
     isSelected: Boolean = false
 ) {
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "")
     
     // Scale animation
     val scale by infiniteTransition.animateFloat(

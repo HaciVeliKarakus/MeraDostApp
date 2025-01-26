@@ -31,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -49,10 +50,10 @@ fun QuizCategoryScreen(
     onBackClick: () -> Unit
 ) {
     val quizzes = QuizData.getQuizzesByCategory(categoryId ?: "")
-    var currentQuizIndex by remember { mutableStateOf(0) }
+    var currentQuizIndex by remember { mutableIntStateOf(0) }
     var selectedAnswer by remember { mutableStateOf<String?>(null) }
     var isAnswerChecked by remember { mutableStateOf(false) }
-    var correctAnswers by remember { mutableStateOf(0) }
+    var correctAnswers by remember { mutableIntStateOf(0) }
 
     // Bottom sheet state
     val sheetState = rememberModalBottomSheetState()
