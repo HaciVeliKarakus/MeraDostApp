@@ -1,7 +1,20 @@
 package io.hvk.meradostapp.model
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Abc
+import androidx.compose.material.icons.filled.Computer
+import androidx.compose.material.icons.filled.EmojiEmotions
+import androidx.compose.material.icons.filled.HomeMini
+import androidx.compose.material.icons.filled.Navigation
+import androidx.compose.material.icons.filled.Numbers
+import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.filled.WavingHand
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class Lecture(
@@ -10,7 +23,18 @@ data class Lecture(
     val description: String,
     val icon: ImageVector,
     val content: List<LectureContent>
-)
+) {
+    companion object {
+        val preview = Lecture(
+            id = "id",
+            title = "title",
+            description = "Lorem ipsum",
+            icon = Icons.Default.HomeMini,
+            content = listOf()
+
+        )
+    }
+}
 
 data class LectureContent(
     val hindi: String,
@@ -1396,7 +1420,7 @@ val lectureCategories = listOf(
                 pronunciation = "laptop",
                 example = "मैं लैपटॉप पर काम करता हूं (main laptop par kaam karta hoon) - I work on laptop"
             ),
-            
+
             // Internet Terms
             LectureContent(
                 hindi = "इंटरनेट",

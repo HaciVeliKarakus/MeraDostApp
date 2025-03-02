@@ -16,7 +16,6 @@ class ThemeState(private val preferencesManager: PreferencesManager) {
     private val scope = CoroutineScope(Dispatchers.IO)
 
     init {
-        // Load initial theme preference
         scope.launch {
             preferencesManager.isDarkMode.collect { darkMode ->
                 isDarkMode = darkMode
