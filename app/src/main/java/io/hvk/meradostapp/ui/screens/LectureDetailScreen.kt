@@ -11,8 +11,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -29,13 +29,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Abc
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.EmojiEmotions
 import androidx.compose.material.icons.filled.Info
@@ -49,16 +49,19 @@ import androidx.compose.material.icons.filled.RecordVoiceOver
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Translate
-import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.filled.WavingHand
+import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.derivedStateOf
@@ -74,16 +77,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.hvk.meradostapp.model.LectureContent
 import io.hvk.meradostapp.model.lectureCategories
 import io.hvk.meradostapp.ui.components.AnimatedBackground
+import io.hvk.meradostapp.util.pulseAnimation
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LectureDetailScreen(
     lectureId: String?,
@@ -92,111 +100,95 @@ fun LectureDetailScreen(
     val lecture = lectureCategories.find { it.id == lectureId }
     val lazyListState = rememberLazyListState()
     val scope = rememberCoroutineScope()
-    
-    // Show FAB only when scrolled
-    val showFab by remember {
+
+    val fabVisible by remember {
         derivedStateOf {
             lazyListState.firstVisibleItemIndex > 0 || lazyListState.firstVisibleItemScrollOffset > 0
         }
     }
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            // Header with back button
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .background(MaterialTheme.colorScheme.primary)
-            ) {
-                // Back button
-                IconButton(
-                    onClick = onBackClick,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.TopStart)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
-                        tint = MaterialTheme.colorScheme.onPrimary
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = lecture?.title ?: "Lecture",
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
-                }
-
-                // Header content
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(
-                            start = 16.dp,
-                            end = 16.dp,
-                            top = 56.dp, // Added extra padding for back button
-                            bottom = 16.dp
-                        ),
-                    verticalArrangement = Arrangement.Center
-                ) {
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onBackClick,
+                        modifier = Modifier
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                actions = {
                     Icon(
                         imageVector = lecture?.icon ?: Icons.Default.Book,
                         contentDescription = null,
                         modifier = Modifier.size(48.dp),
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = lecture?.title ?: "Lecture",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                    Text(
-                        text = lecture?.description ?: "",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                    )
-                }
-            }
-
-            // Content
-            LazyColumn(
-                state = lazyListState,
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                },
+                scrollBehavior = scrollBehavior
+            )
+        },
+        floatingActionButton = {
+            AnimatedVisibility(
+                visible = fabVisible,
+                enter = fadeIn() + scaleIn(),
+                exit = fadeOut() + scaleOut()
             ) {
-                items(
-                    items = lecture?.content ?: emptyList(),
-                    key = { it.hindi + it.english }
-                ) { content ->
-                    AnimatedCard(content = content)
+                FloatingActionButton(
+                    onClick = {
+                        scope.launch {
+                            lazyListState.animateScrollToItem(0)
+                            scrollBehavior.state.heightOffset = 0f
+                            scrollBehavior.state.contentOffset = 0f
+                        }
+                    },
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier
+                        .pulseAnimation(true)
+                        .border(2.dp, MaterialTheme.colorScheme.onSurface, CircleShape),
+                    shape = CircleShape
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowUp,
+                        contentDescription = "Scroll to top"
+                    )
                 }
             }
         }
-
-        // Floating Action Button
-        AnimatedVisibility(
-            visible = showFab,
+    ) { innerPadding ->
+        LazyColumn(
+            state = lazyListState,
             modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp),
-            enter = fadeIn() + scaleIn(),
-            exit = fadeOut() + scaleOut()
+                .fillMaxSize()
+                .padding(innerPadding)
+                .nestedScroll(scrollBehavior.nestedScrollConnection),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            FloatingActionButton(
-                onClick = {
-                    scope.launch {
-                        lazyListState.animateScrollToItem(0)
-                    }
-                },
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ) {
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowUp,
-                    contentDescription = "Scroll to top"
-                )
+            items(
+                items = lecture?.content ?: emptyList(),
+                key = { it.hindi + it.english }
+            ) { content ->
+                AnimatedCard(content = content)
             }
         }
     }
@@ -244,7 +236,8 @@ fun AnimatedCard(content: LectureContent) {
         modifier = Modifier
             .scale(scale.value)
             .alpha(alpha.value)
-            .offset(y = offsetY.value.dp)
+//            .offset(y = offsetY.value.dp)
+            .offset { IntOffset(x = 0, y = offsetY.value.toInt()) }
             .animateContentSize(
                 animationSpec = spring(
                     dampingRatio = Spring.DampingRatioMediumBouncy,
@@ -271,7 +264,6 @@ fun LectureContentCard(content: LectureContent) {
         )
     }
 
-    // Calculate font size based on text length
     val fontSize = when {
         content.hindi.length <= 3 -> 80.sp  // Short text like "घर"
         content.hindi.length <= 6 -> 60.sp  // Medium text like "किताब"
@@ -288,13 +280,13 @@ fun LectureContentCard(content: LectureContent) {
             .shadow(
                 elevation = 8.dp,
                 shape = RoundedCornerShape(16.dp)
-            ),
+            )
+            .border(2.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp)),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            // Category icon at the top
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -319,7 +311,7 @@ fun LectureContentCard(content: LectureContent) {
                     modifier = Modifier.size(24.dp),
                     tint = MaterialTheme.colorScheme.primary
                 )
-                
+
                 Text(
                     text = when (lectureId) {
                         "letters" -> "Letter"
@@ -342,7 +334,6 @@ fun LectureContentCard(content: LectureContent) {
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Main content box with background
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -465,4 +456,11 @@ fun LectureContentCard(content: LectureContent) {
 }
 
 // Add CompositionLocal to access lectureId
-private val LocalLectureId = compositionLocalOf<String?> { null } 
+private val LocalLectureId = compositionLocalOf<String?> { null }
+
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview() {
+    LectureDetailScreen("letters") { }
+}

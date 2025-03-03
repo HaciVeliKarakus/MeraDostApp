@@ -31,6 +31,11 @@ import androidx.navigation.navArgument
 import io.hvk.meradostapp.navigation.Screen
 import io.hvk.meradostapp.ui.theme.MeraDostAppTheme
 
+private val navItems = listOf(
+    Screen.Home to Icons.Default.Home to "Learn",
+    Screen.Quiz to Icons.Default.Quiz to "Quiz"
+)
+
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -51,31 +56,19 @@ fun MainScreen() {
                 NavigationBar {
                     val currentRoute = navBackStackEntry?.destination?.route
 
-                    // Home tab
-                    NavigationBarItem(
-                        icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                        label = { Text("Learn") },
-                        selected = currentRoute == Screen.Home.route,
-                        onClick = {
-                            navController.navigate(Screen.Home.route) {
-                                popUpTo(navController.graph.startDestinationId)
-                                launchSingleTop = true
+                    navItems.forEach { (screen, label) ->
+                        NavigationBarItem(
+                            icon = { Icon(screen.second, contentDescription = label) },
+                            label = { Text(label) },
+                            selected = currentRoute == screen.first.route,
+                            onClick = {
+                                navController.navigate(screen.first.route) {
+                                    popUpTo(navController.graph.startDestinationId)
+                                    launchSingleTop = true
+                                }
                             }
-                        }
-                    )
-
-                    // Quiz tab
-                    NavigationBarItem(
-                        icon = { Icon(Icons.Default.Quiz, contentDescription = "Quiz") },
-                        label = { Text("Quiz") },
-                        selected = currentRoute == Screen.Quiz.route,
-                        onClick = {
-                            navController.navigate(Screen.Quiz.route) {
-                                popUpTo(navController.graph.startDestinationId)
-                                launchSingleTop = true
-                            }
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
@@ -86,7 +79,7 @@ fun MainScreen() {
             modifier = Modifier.padding(
                 start = paddingValues.calculateStartPadding(LocalLayoutDirection.current),
                 end = paddingValues.calculateEndPadding(LocalLayoutDirection.current),
-                top = paddingValues.calculateTopPadding(),
+//                top = paddingValues.calculateTopPadding(),
                 bottom = if (shouldShowBottomBar) paddingValues.calculateBottomPadding() else 0.dp
             )
         ) {
@@ -111,7 +104,7 @@ fun MainScreen() {
             ) { backStackEntry ->
                 LectureDetailScreen(
                     lectureId = backStackEntry.arguments?.getString("lectureId"),
-                    onBackClick = { navController.popBackStack() }
+                    onBackClick = { navController.navigateUp() }
                 )
             }
             composable(

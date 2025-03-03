@@ -47,7 +47,7 @@ fun CategoryCard(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp))
+            .border(2.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp))
             .aspectRatio(1f)
             .clickable(onClick = onClick)
             .pointerInput(Unit) {
