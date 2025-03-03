@@ -39,6 +39,7 @@ import io.hvk.meradostapp.ui.theme.MeraDostAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    modifier: Modifier = Modifier,
     onLectureClick: (String) -> Unit
 ) {
     var showSearch by remember { mutableStateOf(false) }
@@ -84,7 +85,8 @@ fun HomeScreen(
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
             )
-        }
+        },
+        modifier = modifier
     ) { innerPadding ->
         Column(Modifier.padding(innerPadding)) {
             AnimatedVisibility(

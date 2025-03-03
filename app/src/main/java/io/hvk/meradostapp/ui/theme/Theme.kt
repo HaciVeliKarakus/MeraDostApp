@@ -48,45 +48,88 @@ private val md_theme_dark_onSurfaceVariant = Color(0xFFCAC4D0)
 private val md_theme_dark_outline = Color(0xFF938F99)
 private val md_theme_dark_error = Color(0xFFF2B8B5)
 private val md_theme_dark_onError = Color(0xFF601410)
+//
+//private val LightColorScheme = lightColorScheme(
+//    primary = md_theme_light_primary,
+//    onPrimary = md_theme_light_onPrimary,
+//    primaryContainer = md_theme_light_primaryContainer,
+//    onPrimaryContainer = md_theme_light_onPrimaryContainer,
+//    secondary = md_theme_light_secondary,
+//    onSecondary = md_theme_light_onSecondary,
+//    secondaryContainer = md_theme_light_secondaryContainer,
+//    onSecondaryContainer = md_theme_light_onSecondaryContainer,
+//    background = md_theme_light_background,
+//    onBackground = md_theme_light_onBackground,
+//    surface = md_theme_light_surface,
+//    onSurface = md_theme_light_onSurface,
+//    surfaceVariant = md_theme_light_surfaceVariant,
+//    onSurfaceVariant = md_theme_light_onSurfaceVariant,
+//    outline = md_theme_light_outline,
+//    error = md_theme_light_error,
+//    onError = md_theme_light_onError
+//)
+//
+//private val DarkColorScheme = darkColorScheme(
+//    primary = md_theme_dark_primary,
+//    onPrimary = md_theme_dark_onPrimary,
+//    primaryContainer = md_theme_dark_primaryContainer,
+//    onPrimaryContainer = md_theme_dark_onPrimaryContainer,
+//    secondary = md_theme_dark_secondary,
+//    onSecondary = md_theme_dark_onSecondary,
+//    secondaryContainer = md_theme_dark_secondaryContainer,
+//    onSecondaryContainer = md_theme_dark_onSecondaryContainer,
+//    background = md_theme_dark_background,
+//    onBackground = md_theme_dark_onBackground,
+//    surface = md_theme_dark_surface,
+//    onSurface = md_theme_dark_onSurface,
+//    surfaceVariant = md_theme_dark_surfaceVariant,
+//    onSurfaceVariant = md_theme_dark_onSurfaceVariant,
+//    outline = md_theme_dark_outline,
+//    error = md_theme_dark_error,
+//    onError = md_theme_dark_onError
+//)
 
-private val LightColorScheme = lightColorScheme(
-    primary = md_theme_light_primary,
-    onPrimary = md_theme_light_onPrimary,
-    primaryContainer = md_theme_light_primaryContainer,
-    onPrimaryContainer = md_theme_light_onPrimaryContainer,
-    secondary = md_theme_light_secondary,
-    onSecondary = md_theme_light_onSecondary,
-    secondaryContainer = md_theme_light_secondaryContainer,
-    onSecondaryContainer = md_theme_light_onSecondaryContainer,
-    background = md_theme_light_background,
-    onBackground = md_theme_light_onBackground,
-    surface = md_theme_light_surface,
-    onSurface = md_theme_light_onSurface,
-    surfaceVariant = md_theme_light_surfaceVariant,
-    onSurfaceVariant = md_theme_light_onSurfaceVariant,
-    outline = md_theme_light_outline,
-    error = md_theme_light_error,
-    onError = md_theme_light_onError
+
+// Duolingo Açık Tema Renkleri
+val LightColorScheme = lightColorScheme(
+    primary = Color(0xFF58CC02), // Duolingo yeşili
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFFA8E063), // Açık yeşil
+    onPrimaryContainer = Color(0xFF1A5D1A),
+
+    secondary = Color(0xFFFFD700), // Sarı vurgu rengi
+    onSecondary = Color.Black,
+    secondaryContainer = Color(0xFFFFF4CC),
+    onSecondaryContainer = Color(0xFF4E3D00),
+
+    background = Color(0xFFFFFFFF),
+    onBackground = Color(0xFF1C1B1F),
+
+    surface = Color(0xFFF5F5F5),
+    onSurface = Color(0xFF1C1B1F),
+
+    outline = Color(0xFF79747E)
 )
 
-private val DarkColorScheme = darkColorScheme(
-    primary = md_theme_dark_primary,
-    onPrimary = md_theme_dark_onPrimary,
-    primaryContainer = md_theme_dark_primaryContainer,
-    onPrimaryContainer = md_theme_dark_onPrimaryContainer,
-    secondary = md_theme_dark_secondary,
-    onSecondary = md_theme_dark_onSecondary,
-    secondaryContainer = md_theme_dark_secondaryContainer,
-    onSecondaryContainer = md_theme_dark_onSecondaryContainer,
-    background = md_theme_dark_background,
-    onBackground = md_theme_dark_onBackground,
-    surface = md_theme_dark_surface,
-    onSurface = md_theme_dark_onSurface,
-    surfaceVariant = md_theme_dark_surfaceVariant,
-    onSurfaceVariant = md_theme_dark_onSurfaceVariant,
-    outline = md_theme_dark_outline,
-    error = md_theme_dark_error,
-    onError = md_theme_dark_onError
+// Duolingo Koyu Tema Renkleri
+val DarkColorScheme = darkColorScheme(
+    primary = Color(0xFF8EE000), // Daha parlak yeşil
+    onPrimary = Color(0xFF1A3E1A),
+    primaryContainer = Color(0xFF3C6B00),
+    onPrimaryContainer = Color(0xFFD7FFB3),
+
+    secondary = Color(0xFFFFC400),
+    onSecondary = Color(0xFF4E3D00),
+    secondaryContainer = Color(0xFF665000),
+    onSecondaryContainer = Color(0xFFFFE599),
+
+    background = Color(0xFF121212),
+    onBackground = Color(0xFFE6E1E5),
+
+    surface = Color(0xFF1E1E1E),
+    onSurface = Color(0xFFE6E1E5),
+
+    outline = Color(0xFF938F99)
 )
 
 @Composable
