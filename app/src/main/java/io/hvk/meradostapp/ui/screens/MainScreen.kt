@@ -1,5 +1,6 @@
 package io.hvk.meradostapp.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -10,6 +11,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +36,7 @@ private val navItems = listOf(
     Screen.Home to Icons.Default.Home to "Learn",
     Screen.Quiz to Icons.Default.Quiz to "Quiz"
 )
-
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -61,7 +63,7 @@ fun MainScreen() {
                                 end = Offset(size.width,0f),
                                 strokeWidth = 1.dp.toPx()
                             )
-                        }
+                        },
                 ) {
                     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -75,13 +77,20 @@ fun MainScreen() {
                                     popUpTo(navController.graph.startDestinationId)
                                     launchSingleTop = true
                                 }
-                            }
+                            },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                selectedTextColor = MaterialTheme.colorScheme.primary,
+                                indicatorColor = MaterialTheme.colorScheme.onPrimary
+//                                selectedTextColor = MaterialTheme.colorScheme.onSecondary,
+//                                indicatorColor = MaterialTheme.colorScheme.onSecondary,
+                            )
                         )
                     }
                 }
             }
         }
-    ) { paddingValues ->
+    ) {
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route

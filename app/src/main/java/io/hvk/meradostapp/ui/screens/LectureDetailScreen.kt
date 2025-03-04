@@ -236,7 +236,6 @@ fun AnimatedCard(content: LectureContent) {
         modifier = Modifier
             .scale(scale.value)
             .alpha(alpha.value)
-//            .offset(y = offsetY.value.dp)
             .offset { IntOffset(x = 0, y = offsetY.value.toInt()) }
             .animateContentSize(
                 animationSpec = spring(
@@ -274,14 +273,15 @@ fun LectureContentCard(content: LectureContent) {
 
     ElevatedCard(
         modifier = Modifier
+            .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
+            .border(2.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp))
             .scale(scale.value)
             .clickable { }
             .shadow(
                 elevation = 8.dp,
                 shape = RoundedCornerShape(16.dp)
-            )
-            .border(2.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp)),
+            ),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(

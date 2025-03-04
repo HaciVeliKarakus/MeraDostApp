@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "221633683720",
+    "project_id": "meradostapp",
+    "storage_bucket": "meradostapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221633683720:android:d4f47b6c93f9408e478cbd",
+        "android_client_info": {
+          "package_name": "io.hvk.meradostapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe9q4zpuF-Dlq3KgeFm34sTkEcLLIPHK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

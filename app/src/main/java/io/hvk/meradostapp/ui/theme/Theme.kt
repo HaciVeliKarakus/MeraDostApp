@@ -97,10 +97,10 @@ val LightColorScheme = lightColorScheme(
     primaryContainer = Color(0xFFA8E063), // Açık yeşil
     onPrimaryContainer = Color(0xFF1A5D1A),
 
-    secondary = Color(0xFFFFD700), // Sarı vurgu rengi
+    secondary = Color(0xFFFF9800), // Turuncu
     onSecondary = Color.Black,
-    secondaryContainer = Color(0xFFFFF4CC),
-    onSecondaryContainer = Color(0xFF4E3D00),
+    secondaryContainer = Color(0xFFFFE0B2),
+    onSecondaryContainer = Color(0xFF5E3700),
 
     background = Color(0xFFFFFFFF),
     onBackground = Color(0xFF1C1B1F),
@@ -118,10 +118,10 @@ val DarkColorScheme = darkColorScheme(
     primaryContainer = Color(0xFF3C6B00),
     onPrimaryContainer = Color(0xFFD7FFB3),
 
-    secondary = Color(0xFFFFC400),
+    secondary = Color(0xFFFFA726), // Turuncunun koyu tonu
     onSecondary = Color(0xFF4E3D00),
-    secondaryContainer = Color(0xFF665000),
-    onSecondaryContainer = Color(0xFFFFE599),
+    secondaryContainer = Color(0xFF5E3700),
+    onSecondaryContainer = Color(0xFFFFD699),
 
     background = Color(0xFF121212),
     onBackground = Color(0xFFE6E1E5),

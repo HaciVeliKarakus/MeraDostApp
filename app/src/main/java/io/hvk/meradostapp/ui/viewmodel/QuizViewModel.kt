@@ -43,7 +43,6 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
         emit(progress ?: QuizProgress(categoryId = categoryId, completedQuizzes = 0, totalQuizzes = 0))
     }
 
-    // Helper function to calculate progress percentage
     @Composable
     fun getCategoryProgress(categoryId: String): Float {
         val progress by getProgressForCategory(categoryId)

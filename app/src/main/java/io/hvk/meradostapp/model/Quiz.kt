@@ -202,70 +202,186 @@ object QuizData {
             options = listOf("Dog", "Cat", "Lion", "Tiger"),
             correctAnswer = "Dog",
             explanation = "'कुत्ता' means 'dog' in Hindi",
-            icon = R.drawable.ic_dog
         ),
         Quiz(
             question = "Which animal is 'बिल्ली'?",
             options = listOf("Cat", "Dog", "Rat", "Rabbit"),
             correctAnswer = "Cat",
             explanation = "'बिल्ली' means 'cat' in Hindi",
-            icon = R.drawable.ic_cat
         ),
         Quiz(
             question = "What is 'हाथी' in English?",
             options = listOf("Elephant", "Horse", "Camel", "Giraffe"),
             correctAnswer = "Elephant",
             explanation = "'हाथी' means 'elephant' in Hindi",
-            icon = R.drawable.ic_elephant
         ),
         Quiz(
             question = "Which animal is 'शेर'?",
             options = listOf("Lion", "Tiger", "Leopard", "Bear"),
             correctAnswer = "Lion",
             explanation = "'शेर' means 'lion' in Hindi",
-            icon = R.drawable.ic_lion
         ),
         Quiz(
             question = "What is 'बाघ' in English?",
             options = listOf("Tiger", "Lion", "Panther", "Wolf"),
             correctAnswer = "Tiger",
             explanation = "'बाघ' means 'tiger' in Hindi",
-            icon = R.drawable.ic_tiger
         ),
         Quiz(
             question = "Which is the Hindi word for 'Monkey'?",
             options = listOf("बंदर", "भालू", "लोमड़ी", "भेड़िया"),
             correctAnswer = "बंदर",
             explanation = "'बंदर' means 'monkey' in Hindi",
-            icon = R.drawable.ic_monkey
         ),
         Quiz(
             question = "What is 'गाय' in English?",
             options = listOf("Cow", "Bull", "Buffalo", "Goat"),
             correctAnswer = "Cow",
             explanation = "'गाय' means 'cow' in Hindi",
-            icon = R.drawable.ic_cow
         ),
         Quiz(
             question = "Which animal is 'भालू'?",
             options = listOf("Bear", "Wolf", "Fox", "Deer"),
             correctAnswer = "Bear",
             explanation = "'भालू' means 'bear' in Hindi",
-            icon = R.drawable.ic_bear
         ),
         Quiz(
             question = "What is 'खरगोश' in English?",
             options = listOf("Rabbit", "Mouse", "Squirrel", "Rat"),
             correctAnswer = "Rabbit",
             explanation = "'खरगोश' means 'rabbit' in Hindi",
-            icon = R.drawable.ic_rabbit
         ),
         Quiz(
             question = "Which is the Hindi word for 'Bird'?",
             options = listOf("पक्षी", "मछली", "सांप", "कछुआ"),
             correctAnswer = "पक्षी",
             explanation = "'पक्षी' means 'bird' in Hindi",
-            icon = R.drawable.ic_bird
+        )
+    )
+
+    val directionQuizzes = listOf(
+        Quiz(
+            question = "What is 'पूर्व' in English?",
+            options = listOf("East", "West", "North", "South"),
+            correctAnswer = "East",
+            explanation = "'पूर्व' means 'east' in Hindi",
+        ),
+        Quiz(
+            question = "Which direction is 'पश्चिम'?",
+            options = listOf("East", "West", "North", "South"),
+            correctAnswer = "West",
+            explanation = "'पश्चिम' means 'west' in Hindi",
+        ),
+        Quiz(
+            question = "What is 'उत्तर' in English?",
+            options = listOf("North", "South", "East", "West"),
+            correctAnswer = "North",
+            explanation = "'उत्तर' means 'north' in Hindi",
+        ),
+        Quiz(
+            question = "Which direction is 'दक्षिण'?",
+            options = listOf("East", "West", "North", "South"),
+            correctAnswer = "South",
+            explanation = "'दक्षिण' means 'south' in Hindi",
+        ),
+        Quiz(
+            question = "What is 'उत्तर-पूर्व' in English?",
+            options = listOf("Northeast", "Northwest", "Southeast", "Southwest"),
+            correctAnswer = "Northeast",
+            explanation = "'उत्तर-पूर्व' means 'northeast' in Hindi",
+        ),
+        Quiz(
+            question = "Which direction is 'दक्षिण-पश्चिम'?",
+            options = listOf("Northeast", "Northwest", "Southeast", "Southwest"),
+            correctAnswer = "Southwest",
+            explanation = "'दक्षिण-पश्चिम' means 'southwest' in Hindi",
+        ),
+        Quiz(
+            question = "What is 'उत्तर-पश्चिम' in English?",
+            options = listOf("Northwest", "Northeast", "Southwest", "Southeast"),
+            correctAnswer = "Northwest",
+            explanation = "'उत्तर-पश्चिम' means 'northwest' in Hindi",
+        ),
+        Quiz(
+            question = "Which direction is 'दक्षिण-पूर्व'?",
+            options = listOf("Northeast", "Northwest", "Southeast", "Southwest"),
+            correctAnswer = "Southeast",
+            explanation = "'दक्षिण-पूर्व' means 'southeast' in Hindi",
+        ),
+        Quiz(
+            question = "What is 'दिशा' in English?",
+            options = listOf("Direction", "Speed", "Distance", "Location"),
+            correctAnswer = "Direction",
+            explanation = "'दिशा' means 'direction' in Hindi",
+        ),
+        Quiz(
+            question = "Which word represents 'location' in Hindi?",
+            options = listOf("स्थान", "दिशा", "गति", "दूरी"),
+            correctAnswer = "स्थान",
+            explanation = "'स्थान' means 'location' in Hindi",
+        )
+    )
+
+    val foodQuizzes = listOf(
+        Quiz(
+            question = "What is 'आलू' in English?",
+            options = listOf("Potato", "Onion", "Tomato", "Carrot"),
+            correctAnswer = "Potato",
+            explanation = "'आलू' means 'potato' in Hindi"
+        ),
+        Quiz(
+            question = "Which food is 'चावल'?",
+            options = listOf("Rice", "Wheat", "Barley", "Oats"),
+            correctAnswer = "Rice",
+            explanation = "'चावल' means 'rice' in Hindi"
+        ),
+        Quiz(
+            question = "What is 'साबूदाना' in English?",
+            options = listOf("Sago", "Rice", "Barley", "Lentils"),
+            correctAnswer = "Sago",
+            explanation = "'साबूदाना' means 'sago' in Hindi"
+        ),
+        Quiz(
+            question = "Which is the Hindi word for 'Bread'?",
+            options = listOf("रोटी", "नान", "पाव", "कचोरी"),
+            correctAnswer = "रोटी",
+            explanation = "'रोटी' means 'bread' in Hindi"
+        ),
+        Quiz(
+            question = "What is 'फल' in English?",
+            options = listOf("Fruit", "Vegetable", "Grain", "Nut"),
+            correctAnswer = "Fruit",
+            explanation = "'फल' means 'fruit' in Hindi"
+        ),
+        Quiz(
+            question = "What is 'दूध' in English?",
+            options = listOf("Milk", "Water", "Juice", "Tea"),
+            correctAnswer = "Milk",
+            explanation = "'दूध' means 'milk' in Hindi"
+        ),
+        Quiz(
+            question = "Which food is 'मिठाई'?",
+            options = listOf("Sweet", "Salty", "Spicy", "Sour"),
+            correctAnswer = "Sweet",
+            explanation = "'मिठाई' means 'sweet' in Hindi"
+        ),
+        Quiz(
+            question = "What is 'टमाटर' in English?",
+            options = listOf("Tomato", "Carrot", "Cucumber", "Pumpkin"),
+            correctAnswer = "Tomato",
+            explanation = "'टमाटर' means 'tomato' in Hindi"
+        ),
+        Quiz(
+            question = "Which is the Hindi word for 'Vegetable'?",
+            options = listOf("सब्जी", "फल", "अनाज", "मांस"),
+            correctAnswer = "सब्जी",
+            explanation = "'सब्जी' means 'vegetable' in Hindi"
+        ),
+        Quiz(
+            question = "What is 'मांस' in English?",
+            options = listOf("Meat", "Fish", "Egg", "Cheese"),
+            correctAnswer = "Meat",
+            explanation = "'मांस' means 'meat' in Hindi"
         )
     )
 
@@ -277,6 +393,8 @@ object QuizData {
             "family" -> familyQuizzes
             "greetings" -> greetingQuizzes
             "animals" -> animalQuizzes
+            "directions" -> directionQuizzes
+            "foods" -> foodQuizzes
             else -> emptyList()
         }
     }

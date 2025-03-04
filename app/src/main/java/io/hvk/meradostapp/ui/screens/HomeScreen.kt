@@ -8,7 +8,9 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -70,7 +72,12 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Learn Hindi") },
+                title = {
+                    Text(
+                        text = "Learn Hindi",
+                        style = MaterialTheme.typography.headlineLarge,
+                    )
+                },
                 actions = {
                     IconButton(onClick = { showSearch = !showSearch }) {
                         Icon(
@@ -88,7 +95,10 @@ fun HomeScreen(
         },
         modifier = modifier
     ) { innerPadding ->
-        Column(Modifier.padding(innerPadding)) {
+        Column(
+            Modifier
+                .padding(innerPadding)
+        ) {
             AnimatedVisibility(
                 visible = showSearch,
                 enter = fadeIn() + expandVertically(),
@@ -113,6 +123,7 @@ fun HomeScreen(
                 contentPadding = PaddingValues(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(bottom = 80.dp)
             ) {
                 items(filteredCategories) { category ->
                     CategoryCard(
@@ -121,7 +132,9 @@ fun HomeScreen(
                     )
                 }
             }
+
         }
+        Spacer(Modifier.height(100.dp))
     }
 }
 

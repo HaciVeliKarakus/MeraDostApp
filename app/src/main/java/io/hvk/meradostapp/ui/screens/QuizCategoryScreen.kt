@@ -1,6 +1,7 @@
 package io.hvk.meradostapp.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,8 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
@@ -26,8 +28,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,10 +42,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.hvk.meradostapp.model.QuizData
+import io.hvk.meradostapp.ui.components.AnimationType
+import io.hvk.meradostapp.ui.components.TrueAnimation
 import io.hvk.meradostapp.ui.viewmodel.QuizViewModel
+import io.hvk.meradostapp.util.boldBorder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,7 +74,6 @@ fun QuizCategoryScreen(
             totalQuestions = quizzes.size,
             sheetState = sheetState,
             onDismiss = {
-                showResults = false
                 onBackClick()
             },
             onRetry = {
@@ -78,119 +86,139 @@ fun QuizCategoryScreen(
         )
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        // Header with back button
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(160.dp)
-                .background(MaterialTheme.colorScheme.primary)
-        ) {
-            IconButton(
-                onClick = onBackClick,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.TopStart)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back",
-                    tint = MaterialTheme.colorScheme.onPrimary
-                )
-            }
+    fun goNext() {
+        currentQuizIndex++
+        selectedAnswer = null
+        isAnswerChecked = false
+    }
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        start = 16.dp,
-                        end = 16.dp,
-                        top = 56.dp,
-                        bottom = 16.dp
-                    ),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Question ${currentQuizIndex + 1}/${quizzes.size}",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-                Text(
-                    text = quizzes[currentQuizIndex].question,
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            }
+    fun showResult() {
+        quizViewModel.updateQuizAttempt(
+            categoryId = categoryId ?: "",
+            completedQuizzes = quizzes.size,
+            score = (correctAnswers * 100) / quizzes.size
+        )
+        showResults = true
+    }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "Question ${currentQuizIndex + 1}/${quizzes.size}",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onBackClick,
+                        modifier = Modifier
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+            )
         }
+    ) { innerPadding ->
 
-        // Quiz options in 2x2 grid
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(innerPadding)
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // First row
             Row(
                 modifier = Modifier
+                    .fillMaxSize()
                     .weight(1f)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    .background(MaterialTheme.colorScheme.secondary)
+                    .boldBorder(shape = RoundedCornerShape(0)),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
-                // First option
-                QuizOptionButton(
-                    option = quizzes[currentQuizIndex].options[0],
-                    isSelected = selectedAnswer == quizzes[currentQuizIndex].options[0],
-                    isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[0] == quizzes[currentQuizIndex].correctAnswer,
-                    isEnabled = !isAnswerChecked,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    selectedAnswer = quizzes[currentQuizIndex].options[0]
-                }
-
-                // Second option
-                QuizOptionButton(
-                    option = quizzes[currentQuizIndex].options[1],
-                    isSelected = selectedAnswer == quizzes[currentQuizIndex].options[1],
-                    isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[1] == quizzes[currentQuizIndex].correctAnswer,
-                    isEnabled = !isAnswerChecked,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    selectedAnswer = quizzes[currentQuizIndex].options[1]
-                }
+                Text(
+                    text = quizzes[currentQuizIndex].question,
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
             }
-
-            // Second row
-            Row(
+            Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    .fillMaxSize()
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Third option
-                QuizOptionButton(
-                    option = quizzes[currentQuizIndex].options[2],
-                    isSelected = selectedAnswer == quizzes[currentQuizIndex].options[2],
-                    isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[2] == quizzes[currentQuizIndex].correctAnswer,
-                    isEnabled = !isAnswerChecked,
-                    modifier = Modifier.weight(1f)
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    selectedAnswer = quizzes[currentQuizIndex].options[2]
+                    // First option
+                    QuizOptionButton(
+                        option = quizzes[currentQuizIndex].options[0],
+                        isSelected = selectedAnswer == quizzes[currentQuizIndex].options[0],
+                        isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[0] == quizzes[currentQuizIndex].correctAnswer,
+                        isEnabled = !isAnswerChecked,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        selectedAnswer = quizzes[currentQuizIndex].options[0]
+                    }
+
+                    // Second option
+                    QuizOptionButton(
+                        option = quizzes[currentQuizIndex].options[1],
+                        isSelected = selectedAnswer == quizzes[currentQuizIndex].options[1],
+                        isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[1] == quizzes[currentQuizIndex].correctAnswer,
+                        isEnabled = !isAnswerChecked,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        selectedAnswer = quizzes[currentQuizIndex].options[1]
+                    }
                 }
 
-                // Fourth option
-                QuizOptionButton(
-                    option = quizzes[currentQuizIndex].options[3],
-                    isSelected = selectedAnswer == quizzes[currentQuizIndex].options[3],
-                    isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[3] == quizzes[currentQuizIndex].correctAnswer,
-                    isEnabled = !isAnswerChecked,
-                    modifier = Modifier.weight(1f)
+                // Second row
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    selectedAnswer = quizzes[currentQuizIndex].options[3]
+                    // Third option
+                    QuizOptionButton(
+                        option = quizzes[currentQuizIndex].options[2],
+                        isSelected = selectedAnswer == quizzes[currentQuizIndex].options[2],
+                        isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[2] == quizzes[currentQuizIndex].correctAnswer,
+                        isEnabled = !isAnswerChecked,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        selectedAnswer = quizzes[currentQuizIndex].options[2]
+                    }
+
+                    // Fourth option
+                    QuizOptionButton(
+                        option = quizzes[currentQuizIndex].options[3],
+                        isSelected = selectedAnswer == quizzes[currentQuizIndex].options[3],
+                        isCorrect = isAnswerChecked && quizzes[currentQuizIndex].options[3] == quizzes[currentQuizIndex].correctAnswer,
+                        isEnabled = !isAnswerChecked,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        selectedAnswer = quizzes[currentQuizIndex].options[3]
+                    }
                 }
             }
 
@@ -199,18 +227,11 @@ fun QuizCategoryScreen(
                 onClick = {
                     if (isAnswerChecked) {
                         if (currentQuizIndex == quizzes.size - 1) {
-                            // Quiz completed, show results
-                            quizViewModel.updateQuizAttempt(
-                                categoryId = categoryId ?: "",
-                                completedQuizzes = quizzes.size,
-                                score = (correctAnswers * 100) / quizzes.size
-                            )
-                            showResults = true
+                            showResult()
                         } else {
                             // Move to next question
-                            currentQuizIndex++
-                            selectedAnswer = null
-                            isAnswerChecked = false
+                            goNext()
+
                         }
                     } else {
                         // Check answer
@@ -222,7 +243,8 @@ fun QuizCategoryScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
+                    .height(56.dp)
+                    .boldBorder(shape = RoundedCornerShape(50)),
                 enabled = selectedAnswer != null
             ) {
                 Text(
@@ -233,6 +255,18 @@ fun QuizCategoryScreen(
                     },
                     style = MaterialTheme.typography.titleMedium
                 )
+            }
+        }
+
+        if (isAnswerChecked) {
+            if (currentQuizIndex == quizzes.size - 1) {
+                showResult()
+            } else {
+                TrueAnimation(
+                    type = if (selectedAnswer == quizzes[currentQuizIndex].correctAnswer)
+                        AnimationType.Correct
+                    else AnimationType.Wrong
+                ) { goNext() }
             }
         }
     }
@@ -256,7 +290,9 @@ fun QuizOptionButton(
 
     ElevatedCard(
         modifier = modifier
-            .fillMaxSize()
+            .clip(RoundedCornerShape(16.dp))
+            .fillMaxWidth()
+            .border(2.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(16.dp))
             .clickable(enabled = isEnabled, onClick = onClick),
         colors = CardDefaults.elevatedCardColors(
             containerColor = backgroundColor
