@@ -47,6 +47,7 @@ fun MainScreen() {
         else -> false
     }
     val surfaceColor = MaterialTheme.colorScheme.onSurface
+
     Scaffold(
         bottomBar = {
             AnimatedVisibility(

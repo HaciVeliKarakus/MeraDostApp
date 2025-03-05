@@ -1,7 +1,5 @@
 package io.hvk.meradostapp.model
 
-import io.hvk.meradostapp.R
-
 data class Quiz(
     val question: String,
     val options: List<String>,
@@ -14,7 +12,7 @@ object QuizData {
     val letterQuizzes = listOf(
         Quiz(
             question = "What is the Hindi letter 'अ' called?",
-            options = listOf("Aa", "E", "O", "U"),
+            options = listOf("E", "O", "U", "Aa"),
             correctAnswer = "Aa",
             explanation = "'अ' is the first letter of Hindi alphabet"
         ),
@@ -324,64 +322,10 @@ object QuizData {
 
     val foodQuizzes = listOf(
         Quiz(
-            question = "What is 'आलू' in English?",
-            options = listOf("Potato", "Onion", "Tomato", "Carrot"),
-            correctAnswer = "Potato",
-            explanation = "'आलू' means 'potato' in Hindi"
-        ),
-        Quiz(
-            question = "Which food is 'चावल'?",
-            options = listOf("Rice", "Wheat", "Barley", "Oats"),
-            correctAnswer = "Rice",
-            explanation = "'चावल' means 'rice' in Hindi"
-        ),
-        Quiz(
-            question = "What is 'साबूदाना' in English?",
-            options = listOf("Sago", "Rice", "Barley", "Lentils"),
-            correctAnswer = "Sago",
-            explanation = "'साबूदाना' means 'sago' in Hindi"
-        ),
-        Quiz(
-            question = "Which is the Hindi word for 'Bread'?",
-            options = listOf("रोटी", "नान", "पाव", "कचोरी"),
-            correctAnswer = "रोटी",
-            explanation = "'रोटी' means 'bread' in Hindi"
-        ),
-        Quiz(
-            question = "What is 'फल' in English?",
-            options = listOf("Fruit", "Vegetable", "Grain", "Nut"),
-            correctAnswer = "Fruit",
-            explanation = "'फल' means 'fruit' in Hindi"
-        ),
-        Quiz(
-            question = "What is 'दूध' in English?",
-            options = listOf("Milk", "Water", "Juice", "Tea"),
-            correctAnswer = "Milk",
-            explanation = "'दूध' means 'milk' in Hindi"
-        ),
-        Quiz(
-            question = "Which food is 'मिठाई'?",
-            options = listOf("Sweet", "Salty", "Spicy", "Sour"),
-            correctAnswer = "Sweet",
-            explanation = "'मिठाई' means 'sweet' in Hindi"
-        ),
-        Quiz(
-            question = "What is 'टमाटर' in English?",
-            options = listOf("Tomato", "Carrot", "Cucumber", "Pumpkin"),
-            correctAnswer = "Tomato",
-            explanation = "'टमाटर' means 'tomato' in Hindi"
-        ),
-        Quiz(
-            question = "Which is the Hindi word for 'Vegetable'?",
-            options = listOf("सब्जी", "फल", "अनाज", "मांस"),
-            correctAnswer = "सब्जी",
-            explanation = "'सब्जी' means 'vegetable' in Hindi"
-        ),
-        Quiz(
-            question = "What is 'मांस' in English?",
+            question = "What is 'pisss' in English?",
             options = listOf("Meat", "Fish", "Egg", "Cheese"),
             correctAnswer = "Meat",
-            explanation = "'मांस' means 'meat' in Hindi"
+            explanation = "'मांस' means 'piss' in Hindi"
         )
     )
 

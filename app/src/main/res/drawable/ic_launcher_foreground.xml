@@ -6,7 +6,7 @@
     
     <!-- Background Circle with gradient -->
     <path
-        android:fillColor="#6750A4"
+        android:fillColor="#58CC02"
         android:pathData="M54,28C40.19,28 29,39.19 29,53C29,66.81 40.19,78 54,78C67.81,78 79,66.81 79,53C79,39.19 67.81,28 54,28Z"/>
 
     <!-- Decorative elements -->
@@ -16,24 +16,24 @@
 
     <!-- Hindi Letter "अ" -->
     <path
-        android:fillColor="#21005E"
+        android:fillColor="#1C1B1F"
         android:pathData="M48,44L60,44A2,2 0,0 1,62 46L62,58A2,2 0,0 1,60 60L48,60A2,2 0,0 1,46 58L46,46A2,2 0,0 1,48 44z"/>
     
     <!-- Decorative dot -->
     <path
-        android:fillColor="#EADDFF"
+        android:fillColor="#FFA726"
         android:pathData="M54,52m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
 
     <!-- Outer ring -->
     <path
-        android:strokeColor="#EADDFF"
+        android:strokeColor="#1C1B1F"
         android:strokeWidth="2"
         android:strokeLineCap="round"
         android:pathData="M54,28C40.19,28 29,39.19 29,53C29,66.81 40.19,78 54,78C67.81,78 79,66.81 79,53C79,39.19 67.81,28 54,28Z"/>
 
     <!-- Decorative lines -->
     <path
-        android:strokeColor="#EADDFF"
+        android:strokeColor="#1C1B1F"
         android:strokeWidth="1.5"
         android:strokeLineCap="round"
         android:pathData="M54,32L54,36M54,68L54,72M32,52L36,52M72,52L76,52"/>

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.2"
+firebaseBom = "33.10.0"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -36,7 +37,19 @@ androidx-datastore-preferences = { group = "androidx.datastore", name = "datasto
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
-lottie-compose = { group = "com.airbnb.android",name = "lottie-compose", version.ref = "lottieCompose" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieCompose" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
+firebase-storage = { module = "com.google.firebase:firebase-storage" }
+
+[bundles]
+firebase = [
+    "firebase-analytics",
+    "firebase-database",
+    "firebase-storage"
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

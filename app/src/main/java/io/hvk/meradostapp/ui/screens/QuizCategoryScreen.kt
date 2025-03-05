@@ -39,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,6 +51,7 @@ import io.hvk.meradostapp.ui.components.AnimationType
 import io.hvk.meradostapp.ui.components.TrueAnimation
 import io.hvk.meradostapp.ui.viewmodel.QuizViewModel
 import io.hvk.meradostapp.util.boldBorder
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,9 +66,9 @@ fun QuizCategoryScreen(
     var isAnswerChecked by remember { mutableStateOf(false) }
     var correctAnswers by remember { mutableIntStateOf(0) }
 
-    // Bottom sheet state
     val sheetState = rememberModalBottomSheetState()
     var showResults by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     if (showResults) {
         QuizResultBottomSheet(
@@ -74,7 +76,10 @@ fun QuizCategoryScreen(
             totalQuestions = quizzes.size,
             sheetState = sheetState,
             onDismiss = {
-                onBackClick()
+                scope.launch {
+                    sheetState.hide()
+                    onBackClick()
+                }
             },
             onRetry = {
                 currentQuizIndex = 0
